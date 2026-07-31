@@ -179,11 +179,28 @@ extension of this work.
 
 ## Provenance
 
-AI assistants were employed as instruments for data gathering, literature retrieval, adversarial
-review, and build tooling. All models were designed and run by the author. Moreover, all
-probabilities were set by the author in a verification pass held separate from model construction.
-The private repository carries the full decision log, including the two places where an early draft
-overclaimed and was corrected before print.
+### Declaration of AI use
+
+During the preparation of this work we used ChatGPT, Claude, Perplexity, GPAI, and Overleaf. We
+used them to expand the option space, generating alternative framings and counterarguments for us
+to evaluate. We used them to surface candidate patterns across studies and datasets, each of which
+we then checked against the sources ourselves. We also used them to challenge our assumptions and
+to hunt for gaps and bias in our own reasoning, and to improve readability. They assisted in
+writing and debugging the Python in `analysis/` and `models/` that builds the panel, runs the
+counterfactual ensembles, and produces the exhibits. However, we verified every output, result,
+and line of code against the underlying data and against established method before it entered the
+paper. Of note, no probability, threshold, resolution criterion, or conclusion was set by a model.
+We reviewed and edited all content, we take full responsibility for it, and the ideas put forward
+are our own.
+
+This declaration appears verbatim in the paper's front matter.
+
+### What that means for this repository
+
+All models were designed and run by the author. Moreover, all probabilities were set by the author
+in a verification pass held separate from model construction. The private repository carries the
+full decision log, including the two places where an early draft overclaimed and was corrected
+before print.
 
 ## Citation
 
