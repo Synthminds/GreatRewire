@@ -196,7 +196,7 @@ print(f"P3: policy-exposure sum {sum(imp[f] for f in policy):.4f} vs "
 # ------------------------------- the plot, three panels ----------------
 OI = {"blue": "#0072B2", "verm": "#D55E00", "green": "#009E73", "gray": "#666666"}
 fig, axes = plt.subplots(1, 3, figsize=(10.6, 3.1))
-fig.suptitle("The published laws hold out-of-sample — and gravity still rules the average dyad,\n"
+fig.suptitle("The published laws hold out-of-sample, and gravity still rules the average dyad,\n"
              "which is what makes the named corridors stand out",
              x=0.02, ha="left", fontsize=11, fontweight="bold")
 
@@ -240,7 +240,7 @@ ax.set_yticklabels([LABEL[FEATS[i]] for i in order], fontsize=7)
 ax.set_xlabel("permutation importance", fontsize=8)
 ax.set_title(f"Share shifts 2017$\\to$2024: scale vs exposure\n"
              f"(RF, OOB $R^2$={rf_a.oob_score_:.2f}; exposure in orange)", fontsize=8.5)
-ax.annotate("CHN–US is 1 dyad of 5,996 — targeted\neffects don't cross-section; the ensemble\npercentiles (B2) carry that test",
+ax.annotate("CHN\u2013US is 1 dyad of 5,996, so targeted\neffects do not cross-section; the ensemble\npercentiles (B2) carry that test",
             xy=(0.98, 0.05), xycoords="axes fraction", ha="right", va="bottom",
             fontsize=6.2, color="#555555")
 
