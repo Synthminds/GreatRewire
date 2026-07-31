@@ -9,7 +9,6 @@ world trade web. Reproduction package for a submission to Bridgewater and Global
 > live in that file. A machine-readable mirror sits at
 > [`.well-known/greatrewire.json`](.well-known/greatrewire.json).
 
-Interactive companion: **https://neural-graph.vercel.app**
 Licence: MIT, code only. See the data note below.
 
 ---
@@ -181,7 +180,7 @@ extension of this work.
 
 ### Declaration of AI use
 
-During the preparation of this work we used ChatGPT, Claude, Perplexity, GPAI, and Overleaf. We
+During the preparation of this work we used ChatGPT, Claude, Perplexity, and GPAI. We
 used them to expand the option space, generating alternative framings and counterarguments for us
 to evaluate. We used them to surface candidate patterns across studies and datasets, each of which
 we then checked against the sources ourselves. We also used them to challenge our assumptions and

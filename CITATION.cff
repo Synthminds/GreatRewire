@@ -19,7 +19,6 @@ authors:
     email: wes@synthminds.ai
     affiliation: "Synthminds AI"
 repository-code: "https://github.com/Synthminds/GreatRewire"
-url: "https://neural-graph.vercel.app"
 keywords:
   - world trade network
   - network science

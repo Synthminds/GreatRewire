@@ -14,8 +14,6 @@
     "companion": "demo/README.md"
   },
   "repository": "https://github.com/Synthminds/GreatRewire",
-  "companion_url": "https://neural-graph.vercel.app",
-  "companion_data_url": "https://project-daw86.vercel.app/data.js",
   "license": "MIT",
   "contact": "wes@synthminds.ai",
   "runtime": {

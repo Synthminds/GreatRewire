@@ -5,9 +5,6 @@ rather than to assertion. To achieve this objective we ship an interactive compa
 the same processed files the analysis reads, so a reader can watch the placebo fail and re-derive
 the printed corridor readings in a browser instead of taking our word for either.
 
-Live page: **https://neural-graph.vercel.app**
-Data payload: **https://project-daw86.vercel.app/data.js** (plain JSON, CORS-open)
-
 ## Files
 
 | File | Role |
