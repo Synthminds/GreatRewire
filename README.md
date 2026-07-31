@@ -1,1 +1,194 @@
-# GreatRewire
+# The Great Rewiring
+
+Two resource grabs, one network: pricing modern mercantilism and artificial intelligence on the
+world trade web. Reproduction package for a submission to Bridgewater and Global Citizen,
+*Forecasting the Future 2026*.
+
+> ### Agents start here: **[AGENTS.md](AGENTS.md)**
+> The capability table, the proposed MCP tool surface, the data contracts, and the four guardrails
+> live in that file. A machine-readable mirror sits at
+> [`.well-known/greatrewire.json`](.well-known/greatrewire.json).
+
+Interactive companion: **https://neural-graph.vercel.app**
+Licence: MIT, code only. See the data note below.
+
+---
+
+## What This Is
+
+Our objective is to treat the world trade network as one object and to price two simultaneous grabs
+against it. The first is mercantilist, contesting chokepoints in semiconductors, critical minerals,
+batteries, pharmaceutical ingredients, and aerospace. The second is computational, contesting power,
+capital, and silicon. However, the two grabs land on one object rather than two. The instrument
+shared across both is a synthetic generator of the world trade web, published at CompleNet 2022,
+which we port to Python, validate against its own reported statistics, and then run forward as a
+null for a world that never rewired.
+
+Lastly, the repository holds that generator, the experiments run on it, the audits that broke one of
+them, the correction that followed, and the ten binary forecasts the whole apparatus supports. It
+does not hold the paper.
+
+---
+
+## What It Found
+
+Our findings are numbered in [`docs/FINDINGS.md`](docs/FINDINGS.md) with the conditions attached to
+each. Four carry the argument.
+
+**The port is faithful.** Driven by real World Bank GDPs across 1996 to 2020, the ported generator
+reproduces six headline statistics from the published tables within approximately 3.5%. This
+translates to a null we can run forward without having smuggled our own discretion into it.
+
+**Targeted removal partitions value where random failure does not.** Removing the strongest 10% of
+nodes from the actual 2024 network leaves approximately 8.4% of original trade weight in the
+surviving connected component, against approximately 83.7% under random failure of the same
+magnitude. Simply put, the topology holds and the value structure partitions, which is a roughly
+tenfold gap between an adversary who chooses and an accident that does not.
+
+**The counterfactual bands failed their own placebo.** Pushing roughly 2,653 untreated dyads through
+the 300-run ensemble should return approximately uniform percentiles. However, it returns
+approximately 28.3% below the 5th percentile and approximately 27.5% above the 95th, at a KS
+distance to uniform of approximately 0.239. The generator's within-dyad dispersion of approximately
+0.104 dex sits against a real cross-section of approximately 0.421 dex, so the bands run
+approximately 4.1x too tight, and roughly 10.7x too tight in the 2017 to 2019 pre-period.
+
+**Corrected, the direction survives and the magnitude does not.** Rebuilding the null from the
+cross-section of deviations, following Efron, puts the China-US corridor at approximately 0.86x its
+benchmark median and roughly the 34th percentile of all comparable dyads. The Vietnam-US corridor
+runs the other way, at approximately 1.26x and roughly the 75th. Suppression and re-routing are both
+real. However, both are ordinary-large rather than extreme.
+
+However, the last two findings are the point of the package rather than a blemish on it. A
+forecaster who placebo-tests his own null, finds it over-confident by a factor of four, and prints
+the correction has produced a more useful instrument than one who never looked.
+
+---
+
+## The Ten Forecasts
+
+The slate is locked at v5.0 and recorded in [`notes/LOCKED-SLATE-v5.md`](notes/LOCKED-SLATE-v5.md).
+Of note, IDs A1 through D10 are stable and will not be renumbered.
+
+| ID | P | Claim (short) |
+|---|---|---|
+| A1 | 62 | US average effective tariff rate above 8% for calendar 2027 |
+| A2 | 38 | BIS adds 100 or more China entities, Aug-26 through Dec-27 |
+| A3 | 45 | China extraterritorial mineral enforcement documented by end-27 |
+| B4 | 45 | (Mexico plus ASEAN) minus China at 30pp or more of US goods imports, cal-2027 |
+| B5 | 20 | China and Hong Kong at 12% or more of NVIDIA revenue, FY2028 |
+| C6 | 45 | Big-4 cal-2027 capex above $1.0T including finance leases |
+| C7 | 75 | US data-center load above 8% of generation, cal-2028 |
+| C8 | 55 | 40 or more states with large-load tariffs by end-27 |
+| C9 | 42 | Big-4 capex YoY below 10% for two consecutive quarters before end-28 |
+| D10 | 35 | CPS computer-and-mathematical unemployment gap at 1.5pp or more before end-27 |
+
+*Source: Author (2026).*
+
+Three sit at or above 55 and seven below even, with a mean of 46.2 across a range of 20 to 75.
+Moreover, the modal-outcome Brier score of 0.150 runs 40.0% better than a coin flip, and the
+companion computes it live against whatever resolution a reader supplies.
+
+---
+
+## How to Rerun
+
+Python 3.11 with the packages in [`requirements.txt`](requirements.txt). Since every script fixes
+its seeds, reruns are deterministic.
+
+```bash
+pip install -r requirements.txt
+
+# 0. Confirm the generator, which needs no trade data at all
+python3 models/wtw_model.py                      # equation self-test, under 5 seconds
+python3 models/validate_completnet.py            # port validation against the published tables
+
+# 1. Build the trade panel. This gates almost everything below.
+python3 analysis/10_baci_aggregate.py            # downloads CEPII BACI, see the data note
+python3 analysis/20_multigraph.py                # five strategic-sector layers
+
+# 2. The experiments
+python3 analysis/40_counterfactual.py            # 300-run no-rewiring ensemble, 2 to 4 minutes
+python3 analysis/41_attack.py                    # attack percolation
+
+# 3. The audits, in order. 71 breaks 40's bands and 72 repairs them.
+python3 analysis/70_rf_rigor.py                  # random-forest out-of-sample checks
+python3 analysis/71_placebo.py                   # uniformity placebo, 6 to 10 minutes
+python3 analysis/72_empirical_null.py            # the Efron correction, 6 to 10 minutes
+python3 analysis/73_calib_export.py              # calibration histograms for the companion
+
+# 4. The companion
+python3 demo/build_data.py
+sed -e 's|{{DATAURL}}|data.js|' demo/index.template.html > demo/index.html
+python3 -m http.server -d demo 8000
+```
+
+Of note, the ordering within step 3 is not cosmetic. Reading `72_empirical_null.py` output without
+having seen `71_placebo.py` fail first invites exactly the misreading that guardrail G2 in
+[`AGENTS.md`](AGENTS.md) forbids.
+
+---
+
+## What Is Deliberately Absent
+
+Our objective in trimming this repository was to ship what a reader or an agent needs to understand
+and rerun the work, and nothing that merely documents how it was made. Six categories are absent by
+decision rather than by oversight.
+
+**Raw CEPII BACI HS17 V202601.** The licence does not permit redistribution. Download it from
+cepii.fr and `analysis/10_baci_aggregate.py` regenerates everything downstream.
+
+**The bilateral trade panel.** `wtw_agg_2017_2024.csv` is a direct aggregation of BACI values at
+roughly 5.6 MB, so it falls under the same restriction and under the size discipline this repository
+holds itself to. However, it rebuilds in one command.
+
+**The `0x` data-pull scripts.** They require API keys and network access to eight separate
+providers, so a third party cannot reproduce them as written. Their outputs ship instead, each
+carrying a provenance header naming the source, the pull date, and the units.
+
+**The exhibit-rendering and Monte Carlo scripts.** `60_exhibits.py`, `61_x1_redesign.py`,
+`21_actuals_metrics.py`, `22_x3_envelope.py`, and `50_mc_finals.py` produce the figures and the
+draft forecast posteriors. The rendered figures ship in [`figures/`](figures); the code that styles
+them adds nothing a reader needs.
+
+**The LaTeX sources.** This is the machinery, not the paper.
+
+**Internal working notes.** Fourteen notes covering evidence tables, audit logs, adversarial review,
+and superseded slate versions live in the private repository. The two that a reader needs to judge
+the work, being the locked slate and the placebo finding, ship in [`notes/`](notes).
+
+Conversely, one thing is present that a strict reading would cut. `demo/data.js` ships because
+`demo/build_data.py` reads it to carry forward four precomputed blocks, so removing it would break
+the companion rebuild rather than slim the package. Refactoring that dependency out is a logical
+extension of this work.
+
+---
+
+## Documentation
+
+| File | Contents |
+|---|---|
+| [`AGENTS.md`](AGENTS.md) | Capability table, MCP tool surface, determinism notes, data contracts, guardrails, worked example |
+| [`docs/METHOD.md`](docs/METHOD.md) | The generator, the null, the calibration failure, and its correction |
+| [`docs/DATA.md`](docs/DATA.md) | Every source, its vintage, its licence, and what is not redistributed |
+| [`docs/FINDINGS.md`](docs/FINDINGS.md) | The numbered results with the conditions under which each holds |
+| [`demo/README.md`](demo/README.md) | Building and deploying the interactive companion |
+
+*Source: Author (2026).*
+
+---
+
+## Provenance
+
+AI assistants were employed as instruments for data gathering, literature retrieval, adversarial
+review, and build tooling. All models were designed and run by the author. Moreover, all
+probabilities were set by the author in a verification pass held separate from model construction.
+The private repository carries the full decision log, including the two places where an early draft
+overclaimed and was corrected before print.
+
+## Citation
+
+See [`CITATION.cff`](CITATION.cff).
+
+## Contact
+
+For questions, data access, or the private repository: wes@synthminds.ai

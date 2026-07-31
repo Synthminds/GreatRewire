@@ -1,0 +1,9 @@
+# source: US Census Bureau FT900 country workbook (foreign-trade/balance/country.xlsx), general imports, Census basis, NSA, millions of USD
+# pulled: 2026-07-30
+# script: analysis/08_pull_census_imports.py
+# units: value columns = millions USD summed over the period's months; share columns = percent of TOTAL FOR ALL COUNTRIES imports over the SAME months; gap_pp = (Mexico+ASEAN10) - China, percentage points; ASEAN10 = VNM THA MYS IDN PHL SGP KHM LAO BRN MMR (Census codes 5520 5490 5570 5600 5650 5590 5550 5530 5610 5540)
+period,months,world_musd,china_musd,mexico_musd,asean_musd,china_share,mexico_share,asean_share,mex_asean_share,gap_pp
+2023,12,3076552.31,427234.31,472898.66,309739.60,13.89,15.37,10.07,25.44,11.55
+2024,12,3263893.25,440319.39,503110.11,350284.03,13.49,15.41,10.73,26.15,12.66
+2025,12,3414510.59,308651.86,534314.91,452804.70,9.04,15.65,13.26,28.91,19.87
+2026 YTD (Jan-May),5,1428725.77,104169.57,242902.80,228733.02,7.29,17.00,16.01,33.01,25.72

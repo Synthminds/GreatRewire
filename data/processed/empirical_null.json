@@ -1,0 +1,79 @@
+{
+ "main_2020_2024": {
+  "label": "MAIN (printed window)",
+  "y0": 2020,
+  "y1": 2024,
+  "n": 2653,
+  "sd_cross": 0.42107032055069027,
+  "sd_model": 0.10361550530218659,
+  "over_dispersion": 4.0637771279758885,
+  "named": {
+   "CHN-USA": {
+    "dev_dex": -0.0642011266421676,
+    "ratio_vs_median": 0.8625789852572644,
+    "empirical_pctile": 0.3441387108933283
+   },
+   "VNM-USA": {
+    "dev_dex": 0.09936932657379316,
+    "ratio_vs_median": 1.257098553243444,
+    "empirical_pctile": 0.7482095740670939
+   },
+   "MEX-USA": {
+    "dev_dex": -0.026532606019978644,
+    "ratio_vs_median": 0.9407351987404267,
+    "empirical_pctile": 0.43158688277421786
+   },
+   "CHN-VNM": {
+    "dev_dex": 0.09746216459205215,
+    "ratio_vs_median": 1.2515902306843416,
+    "empirical_pctile": 0.7451941198643046
+   },
+   "CHN-MEX": {
+    "dev_dex": 0.09428810225971773,
+    "ratio_vs_median": 1.2424762681303307,
+    "empirical_pctile": 0.7399170750094233
+   }
+  }
+ },
+ "pre_2017_2019": {
+  "label": "PRE-PERIOD backtest",
+  "y0": 2017,
+  "y1": 2019,
+  "n": 2928,
+  "sd_cross": 0.3443586855418295,
+  "sd_model": 0.03232056874840017,
+  "over_dispersion": 10.654474808982899,
+  "named": {
+   "CHN-USA": {
+    "dev_dex": -0.10970324317215585,
+    "ratio_vs_median": 0.7767777136354055,
+    "empirical_pctile": 0.21789617486338797
+   },
+   "VNM-USA": {
+    "dev_dex": 0.07536152550013675,
+    "ratio_vs_median": 1.1894919999745077,
+    "empirical_pctile": 0.7739071038251366
+   },
+   "MEX-USA": {
+    "dev_dex": 0.022314933623190925,
+    "ratio_vs_median": 1.0527249926966242,
+    "empirical_pctile": 0.6301229508196722
+   },
+   "CHN-VNM": {
+    "dev_dex": 0.0044584666418980845,
+    "ratio_vs_median": 1.0103188749804801,
+    "empirical_pctile": 0.555327868852459
+   },
+   "CHN-MEX": {
+    "dev_dex": 0.08236802952643885,
+    "ratio_vs_median": 1.2088377936629442,
+    "empirical_pctile": 0.7865437158469946
+   },
+   "THA-USA": {
+    "dev_dex": -0.027282276395551364,
+    "ratio_vs_median": 0.9391127213603624,
+    "empirical_pctile": 0.42315573770491804
+   }
+  }
+ }
+}

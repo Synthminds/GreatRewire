@@ -1,0 +1,652 @@
+{
+  "meta": {
+    "source": "CEPII BACI HS17 V202601, year 2024",
+    "script": "analysis/20_multigraph.py",
+    "pulled": "2026-07-30",
+    "unit": "weight_kusd = thousands of current USD",
+    "layers": [
+      "semiconductors",
+      "critical_minerals",
+      "batteries",
+      "pharma_apis",
+      "aerospace"
+    ],
+    "node_rule": "top 30 by combined strategic-layer strength (exports+imports summed over layers) + any extra edge endpoints",
+    "edge_rule": "top 15 edges per layer by value",
+    "taiwan_note": "BACI code 490 'Other Asia, nes' recoded to TWN"
+  },
+  "nodes": [
+    {
+      "iso3": "CHN",
+      "strategic_strength_kusd": 645874995.864,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "USA",
+      "strategic_strength_kusd": 394116946.628,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "TWN",
+      "strategic_strength_kusd": 337966642.647,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "HKG",
+      "strategic_strength_kusd": 279056294.667,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "KOR",
+      "strategic_strength_kusd": 272252097.622,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "SGP",
+      "strategic_strength_kusd": 224125920.236,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "DEU",
+      "strategic_strength_kusd": 176291816.757,
+      "dominant_layer": "aerospace"
+    },
+    {
+      "iso3": "JPN",
+      "strategic_strength_kusd": 162916315.957,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "MYS",
+      "strategic_strength_kusd": 160501237.473,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "VNM",
+      "strategic_strength_kusd": 121462974.318,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "FRA",
+      "strategic_strength_kusd": 102825331.779,
+      "dominant_layer": "aerospace"
+    },
+    {
+      "iso3": "IRL",
+      "strategic_strength_kusd": 84496444.786,
+      "dominant_layer": "pharma_apis"
+    },
+    {
+      "iso3": "IND",
+      "strategic_strength_kusd": 77640283.505,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "GBR",
+      "strategic_strength_kusd": 74136984.42,
+      "dominant_layer": "aerospace"
+    },
+    {
+      "iso3": "NLD",
+      "strategic_strength_kusd": 70064441.208,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "THA",
+      "strategic_strength_kusd": 49620520.064,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "CAN",
+      "strategic_strength_kusd": 46701188.731,
+      "dominant_layer": "aerospace"
+    },
+    {
+      "iso3": "MEX",
+      "strategic_strength_kusd": 46536599.54,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "ITA",
+      "strategic_strength_kusd": 43548520.398,
+      "dominant_layer": "pharma_apis"
+    },
+    {
+      "iso3": "PHL",
+      "strategic_strength_kusd": 43463392.252,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "CHE",
+      "strategic_strength_kusd": 40017816.796,
+      "dominant_layer": "pharma_apis"
+    },
+    {
+      "iso3": "BRA",
+      "strategic_strength_kusd": 33342025.378,
+      "dominant_layer": "aerospace"
+    },
+    {
+      "iso3": "POL",
+      "strategic_strength_kusd": 31704295.417,
+      "dominant_layer": "batteries"
+    },
+    {
+      "iso3": "ESP",
+      "strategic_strength_kusd": 31514981.357,
+      "dominant_layer": "aerospace"
+    },
+    {
+      "iso3": "BEL",
+      "strategic_strength_kusd": 24450677.529,
+      "dominant_layer": "pharma_apis"
+    },
+    {
+      "iso3": "HUN",
+      "strategic_strength_kusd": 22968192.07,
+      "dominant_layer": "batteries"
+    },
+    {
+      "iso3": "CZE",
+      "strategic_strength_kusd": 17579760.941,
+      "dominant_layer": "batteries"
+    },
+    {
+      "iso3": "ISR",
+      "strategic_strength_kusd": 15989473.864,
+      "dominant_layer": "semiconductors"
+    },
+    {
+      "iso3": "TUR",
+      "strategic_strength_kusd": 15513124.391,
+      "dominant_layer": "aerospace"
+    },
+    {
+      "iso3": "SVN",
+      "strategic_strength_kusd": 15406727.846,
+      "dominant_layer": "pharma_apis"
+    },
+    {
+      "iso3": "CHL",
+      "strategic_strength_kusd": 6761302.805,
+      "dominant_layer": "batteries"
+    },
+    {
+      "iso3": "DNK",
+      "strategic_strength_kusd": 7631844.555,
+      "dominant_layer": "pharma_apis"
+    },
+    {
+      "iso3": "KAZ",
+      "strategic_strength_kusd": 9139163.606,
+      "dominant_layer": "critical_minerals"
+    },
+    {
+      "iso3": "MMR",
+      "strategic_strength_kusd": 1172774.866,
+      "dominant_layer": "critical_minerals"
+    },
+    {
+      "iso3": "PAN",
+      "strategic_strength_kusd": 2492869.501,
+      "dominant_layer": "pharma_apis"
+    },
+    {
+      "iso3": "RUS",
+      "strategic_strength_kusd": 10513696.67,
+      "dominant_layer": "critical_minerals"
+    }
+  ],
+  "edges": [
+    {
+      "src": "CHN",
+      "dst": "HKG",
+      "layer": "semiconductors",
+      "weight_kusd": 82878659.43
+    },
+    {
+      "src": "TWN",
+      "dst": "CHN",
+      "layer": "semiconductors",
+      "weight_kusd": 56259922.952
+    },
+    {
+      "src": "KOR",
+      "dst": "CHN",
+      "layer": "semiconductors",
+      "weight_kusd": 53520357.809
+    },
+    {
+      "src": "TWN",
+      "dst": "HKG",
+      "layer": "semiconductors",
+      "weight_kusd": 44736404.067
+    },
+    {
+      "src": "TWN",
+      "dst": "SGP",
+      "layer": "semiconductors",
+      "weight_kusd": 41682884.74
+    },
+    {
+      "src": "SGP",
+      "dst": "HKG",
+      "layer": "semiconductors",
+      "weight_kusd": 37542846.79
+    },
+    {
+      "src": "JPN",
+      "dst": "CHN",
+      "layer": "semiconductors",
+      "weight_kusd": 28034901.513
+    },
+    {
+      "src": "KOR",
+      "dst": "TWN",
+      "layer": "semiconductors",
+      "weight_kusd": 26587638.583
+    },
+    {
+      "src": "KOR",
+      "dst": "HKG",
+      "layer": "semiconductors",
+      "weight_kusd": 23223818.183
+    },
+    {
+      "src": "TWN",
+      "dst": "KOR",
+      "layer": "semiconductors",
+      "weight_kusd": 22045926.278
+    },
+    {
+      "src": "CHN",
+      "dst": "KOR",
+      "layer": "semiconductors",
+      "weight_kusd": 21397727.897
+    },
+    {
+      "src": "CHN",
+      "dst": "TWN",
+      "layer": "semiconductors",
+      "weight_kusd": 19823815.134
+    },
+    {
+      "src": "MYS",
+      "dst": "SGP",
+      "layer": "semiconductors",
+      "weight_kusd": 18277190.303
+    },
+    {
+      "src": "CHN",
+      "dst": "VNM",
+      "layer": "semiconductors",
+      "weight_kusd": 17812223.937
+    },
+    {
+      "src": "SGP",
+      "dst": "CHN",
+      "layer": "semiconductors",
+      "weight_kusd": 17735684.687
+    },
+    {
+      "src": "CHN",
+      "dst": "KOR",
+      "layer": "critical_minerals",
+      "weight_kusd": 3372147.845
+    },
+    {
+      "src": "CAN",
+      "dst": "USA",
+      "layer": "critical_minerals",
+      "weight_kusd": 1992314.225
+    },
+    {
+      "src": "CHN",
+      "dst": "JPN",
+      "layer": "critical_minerals",
+      "weight_kusd": 1978818.443
+    },
+    {
+      "src": "KOR",
+      "dst": "CHN",
+      "layer": "critical_minerals",
+      "weight_kusd": 1869785.891
+    },
+    {
+      "src": "KAZ",
+      "dst": "CHN",
+      "layer": "critical_minerals",
+      "weight_kusd": 1846816.108
+    },
+    {
+      "src": "KAZ",
+      "dst": "RUS",
+      "layer": "critical_minerals",
+      "weight_kusd": 1824415.554
+    },
+    {
+      "src": "CHN",
+      "dst": "USA",
+      "layer": "critical_minerals",
+      "weight_kusd": 1727085.411
+    },
+    {
+      "src": "FRA",
+      "dst": "USA",
+      "layer": "critical_minerals",
+      "weight_kusd": 1414204.436
+    },
+    {
+      "src": "GBR",
+      "dst": "USA",
+      "layer": "critical_minerals",
+      "weight_kusd": 1239685.9
+    },
+    {
+      "src": "KOR",
+      "dst": "POL",
+      "layer": "critical_minerals",
+      "weight_kusd": 1227700.781
+    },
+    {
+      "src": "DEU",
+      "dst": "USA",
+      "layer": "critical_minerals",
+      "weight_kusd": 1062714.335
+    },
+    {
+      "src": "RUS",
+      "dst": "CHN",
+      "layer": "critical_minerals",
+      "weight_kusd": 925960.095
+    },
+    {
+      "src": "CHN",
+      "dst": "DEU",
+      "layer": "critical_minerals",
+      "weight_kusd": 878430.57
+    },
+    {
+      "src": "MMR",
+      "dst": "CHN",
+      "layer": "critical_minerals",
+      "weight_kusd": 817835.388
+    },
+    {
+      "src": "CAN",
+      "dst": "NLD",
+      "layer": "critical_minerals",
+      "weight_kusd": 811628.236
+    },
+    {
+      "src": "CHN",
+      "dst": "USA",
+      "layer": "batteries",
+      "weight_kusd": 17820506.397
+    },
+    {
+      "src": "CHN",
+      "dst": "DEU",
+      "layer": "batteries",
+      "weight_kusd": 12988485.937
+    },
+    {
+      "src": "CHN",
+      "dst": "KOR",
+      "layer": "batteries",
+      "weight_kusd": 5534045.765
+    },
+    {
+      "src": "CHN",
+      "dst": "VNM",
+      "layer": "batteries",
+      "weight_kusd": 4106231.716
+    },
+    {
+      "src": "POL",
+      "dst": "DEU",
+      "layer": "batteries",
+      "weight_kusd": 3172892.68
+    },
+    {
+      "src": "KOR",
+      "dst": "USA",
+      "layer": "batteries",
+      "weight_kusd": 3112215.71
+    },
+    {
+      "src": "CHN",
+      "dst": "JPN",
+      "layer": "batteries",
+      "weight_kusd": 3067226.091
+    },
+    {
+      "src": "HUN",
+      "dst": "DEU",
+      "layer": "batteries",
+      "weight_kusd": 3064944.994
+    },
+    {
+      "src": "CHN",
+      "dst": "IND",
+      "layer": "batteries",
+      "weight_kusd": 2692975.134
+    },
+    {
+      "src": "USA",
+      "dst": "MEX",
+      "layer": "batteries",
+      "weight_kusd": 2403046.015
+    },
+    {
+      "src": "CZE",
+      "dst": "DEU",
+      "layer": "batteries",
+      "weight_kusd": 2387767.464
+    },
+    {
+      "src": "JPN",
+      "dst": "USA",
+      "layer": "batteries",
+      "weight_kusd": 2229526.459
+    },
+    {
+      "src": "CHL",
+      "dst": "CHN",
+      "layer": "batteries",
+      "weight_kusd": 2027652.828
+    },
+    {
+      "src": "CHN",
+      "dst": "NLD",
+      "layer": "batteries",
+      "weight_kusd": 1930798.496
+    },
+    {
+      "src": "CHN",
+      "dst": "GBR",
+      "layer": "batteries",
+      "weight_kusd": 1921605.646
+    },
+    {
+      "src": "IRL",
+      "dst": "USA",
+      "layer": "pharma_apis",
+      "weight_kusd": 23813566.649
+    },
+    {
+      "src": "CHE",
+      "dst": "SVN",
+      "layer": "pharma_apis",
+      "weight_kusd": 9592620.208
+    },
+    {
+      "src": "IRL",
+      "dst": "DEU",
+      "layer": "pharma_apis",
+      "weight_kusd": 7796018.489
+    },
+    {
+      "src": "USA",
+      "dst": "ITA",
+      "layer": "pharma_apis",
+      "weight_kusd": 6281318.466
+    },
+    {
+      "src": "CHN",
+      "dst": "IND",
+      "layer": "pharma_apis",
+      "weight_kusd": 4459438.305
+    },
+    {
+      "src": "CHN",
+      "dst": "USA",
+      "layer": "pharma_apis",
+      "weight_kusd": 3926415.928
+    },
+    {
+      "src": "CHE",
+      "dst": "DEU",
+      "layer": "pharma_apis",
+      "weight_kusd": 3791219.618
+    },
+    {
+      "src": "IRL",
+      "dst": "ITA",
+      "layer": "pharma_apis",
+      "weight_kusd": 2956975.44
+    },
+    {
+      "src": "CHN",
+      "dst": "SVN",
+      "layer": "pharma_apis",
+      "weight_kusd": 2830818.111
+    },
+    {
+      "src": "SGP",
+      "dst": "USA",
+      "layer": "pharma_apis",
+      "weight_kusd": 2748681.376
+    },
+    {
+      "src": "CHN",
+      "dst": "BRA",
+      "layer": "pharma_apis",
+      "weight_kusd": 2218169.152
+    },
+    {
+      "src": "CHE",
+      "dst": "USA",
+      "layer": "pharma_apis",
+      "weight_kusd": 2099252.692
+    },
+    {
+      "src": "USA",
+      "dst": "DEU",
+      "layer": "pharma_apis",
+      "weight_kusd": 2055619.191
+    },
+    {
+      "src": "DNK",
+      "dst": "CHN",
+      "layer": "pharma_apis",
+      "weight_kusd": 1984848.616
+    },
+    {
+      "src": "ESP",
+      "dst": "PAN",
+      "layer": "pharma_apis",
+      "weight_kusd": 1804141.513
+    },
+    {
+      "src": "CAN",
+      "dst": "USA",
+      "layer": "aerospace",
+      "weight_kusd": 10740183.728
+    },
+    {
+      "src": "FRA",
+      "dst": "USA",
+      "layer": "aerospace",
+      "weight_kusd": 9190101.333
+    },
+    {
+      "src": "DEU",
+      "dst": "USA",
+      "layer": "aerospace",
+      "weight_kusd": 7821393.376
+    },
+    {
+      "src": "USA",
+      "dst": "CHN",
+      "layer": "aerospace",
+      "weight_kusd": 7571553.261
+    },
+    {
+      "src": "USA",
+      "dst": "BRA",
+      "layer": "aerospace",
+      "weight_kusd": 7113385.373
+    },
+    {
+      "src": "HKG",
+      "dst": "CHN",
+      "layer": "aerospace",
+      "weight_kusd": 6490122.5
+    },
+    {
+      "src": "USA",
+      "dst": "JPN",
+      "layer": "aerospace",
+      "weight_kusd": 6253578.498
+    },
+    {
+      "src": "FRA",
+      "dst": "CHN",
+      "layer": "aerospace",
+      "weight_kusd": 5250909.95
+    },
+    {
+      "src": "USA",
+      "dst": "DEU",
+      "layer": "aerospace",
+      "weight_kusd": 4877559.528
+    },
+    {
+      "src": "GBR",
+      "dst": "HKG",
+      "layer": "aerospace",
+      "weight_kusd": 4850430.986
+    },
+    {
+      "src": "FRA",
+      "dst": "DEU",
+      "layer": "aerospace",
+      "weight_kusd": 4752954.075
+    },
+    {
+      "src": "GBR",
+      "dst": "USA",
+      "layer": "aerospace",
+      "weight_kusd": 4550367.691
+    },
+    {
+      "src": "USA",
+      "dst": "CAN",
+      "layer": "aerospace",
+      "weight_kusd": 4500608.382
+    },
+    {
+      "src": "GBR",
+      "dst": "SGP",
+      "layer": "aerospace",
+      "weight_kusd": 4449597.912
+    },
+    {
+      "src": "USA",
+      "dst": "IRL",
+      "layer": "aerospace",
+      "weight_kusd": 4272257.403
+    }
+  ]
+}

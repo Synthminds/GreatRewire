@@ -1,0 +1,13 @@
+# source: EIA Monthly Energy Review Table 7.2a (Electricity Net Generation: Total (All Sectors)), MSN ELETPUS, csv.php?tbl=T07.02A
+# pulled: 2026-07-30
+# script: analysis/07_pull_eia_generation.py
+# units: terawatt-hours (source unit Million Kilowatthours / 1000); annual rows = MER month-13 totals; T12M = sum of latest 12 monthly values
+period,period_type,net_generation_twh
+2019,annual,4130.6
+2020,annual,4009.8
+2021,annual,4109.7
+2022,annual,4230.7
+2023,annual,4183.3
+2024,annual,4308.6
+2025,annual,4429.5
+202505..202604,T12M,4456.3

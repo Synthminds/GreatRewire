@@ -1,0 +1,177 @@
+# source: CEPII BACI HS17 V202601, year 2024 (via data/processed/baci_2024_hs6.parquet)
+# pulled: 2026-07-30
+# license: Etalab 2.0
+# script: analysis/20_multigraph.py
+# unit: *_kusd values are THOUSANDS of current USD (BACI native 'v'); USD = kusd * 1e3
+# note: Taiwan = BACI code 490 'Other Asia, nes', recoded to TWN (iso3_recode)
+# note: de minimis 1.0 kUSD on layer edges; HHI on 0..10,000 scale;
+#       betweenness distance = 1/ln(1+v_kusd); eigenvector on undirected projection
+# is_top5_concentrated: 5 highest export-origin HHI codes per layer among codes with world trade >= 500000 kUSD (USD 500M floor)
+layer,hs6,label,world_kusd,export_hhi,top_exporter,top_share_pct,second_exporter,second_share_pct,is_top5_concentrated
+semiconductors,854150,"Semiconductor devices: diodes, transistors, LEDs, photovoltaic cells (discrete semis)",3014.243,3353.9,LBN,50.59,GEO,22.3,False
+semiconductors,848630,Semiconductor/flat-panel manufacturing equipment incl. lithography (EUV sits in 848620),3273707.722,3338.6,JPN,48.89,KOR,24.24,True
+semiconductors,848610,Semiconductor/flat-panel manufacturing equipment incl. lithography (EUV sits in 848620),3984182.004,2576.9,JPN,43.73,DEU,18.55,True
+semiconductors,854232,"Electronic integrated circuits: processors, memory, amplifiers (the core chip trade)",202330882.851,2477.2,KOR,37.48,CHN,27.76,True
+semiconductors,854140,"Semiconductor devices: diodes, transistors, LEDs, photovoltaic cells (discrete semis)",77980038.83,2472.6,CHN,47.32,VNM,9.49,True
+semiconductors,854110,"Semiconductor devices: diodes, transistors, LEDs, photovoltaic cells (discrete semis)",10363074.767,1880.9,CHN,39.41,TWN,10.24,True
+semiconductors,854239,"Electronic integrated circuits: processors, memory, amplifiers (the core chip trade)",300167154.174,1867.6,TWN,36.86,CHN,17.17,False
+semiconductors,848620,Semiconductor/flat-panel manufacturing equipment incl. lithography (EUV sits in 848620),77483297.498,1741.6,NLD,25.65,JPN,25.13,False
+semiconductors,854121,"Semiconductor devices: diodes, transistors, LEDs, photovoltaic cells (discrete semis)",4436759.674,1693.6,CHN,36.42,JPN,10.84,False
+semiconductors,854233,"Electronic integrated circuits: processors, memory, amplifiers (the core chip trade)",15435353.603,1465.5,SGP,23.82,CHN,18.48,False
+semiconductors,854160,"Semiconductor devices: diodes, transistors, LEDs, photovoltaic cells (discrete semis)",6362963.97,1430.7,CHN,23.16,JPN,18.37,False
+semiconductors,848640,Semiconductor/flat-panel manufacturing equipment incl. lithography (EUV sits in 848620),11445549.048,1407.1,SGP,27.0,JPN,17.1,False
+semiconductors,848690,Semiconductor/flat-panel manufacturing equipment incl. lithography (EUV sits in 848620),33587283.143,1354.7,USA,25.82,JPN,17.65,False
+semiconductors,854129,"Semiconductor devices: diodes, transistors, LEDs, photovoltaic cells (discrete semis)",28046729.953,1252.1,CHN,28.41,MYS,10.58,False
+semiconductors,854130,"Semiconductor devices: diodes, transistors, LEDs, photovoltaic cells (discrete semis)",1472088.735,1229.0,CHN,27.85,DEU,14.39,False
+semiconductors,854190,"Semiconductor devices: diodes, transistors, LEDs, photovoltaic cells (discrete semis)",5334058.198,1119.0,CHN,18.98,JPN,16.7,False
+semiconductors,854231,"Electronic integrated circuits: processors, memory, amplifiers (the core chip trade)",389411996.641,1118.4,TWN,20.62,CHN,14.71,False
+semiconductors,854290,"Electronic integrated circuits: processors, memory, amplifiers (the core chip trade)",20293649.817,1038.4,CHN,16.61,TWN,14.99,False
+critical_minerals,811212,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",27386.914,7992.9,KAZ,89.18,FRA,5.87,False
+critical_minerals,811259,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",1477.407,7297.8,CHN,84.72,KOR,10.49,False
+critical_minerals,811213,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",653.866,6863.4,USA,82.23,CHE,8.48,False
+critical_minerals,282520,Lithium oxide and hydroxide (battery-grade lithium chain),2718301.869,5609.2,CHN,73.83,CHL,9.92,True
+critical_minerals,284430,Radioactive elements incl. natural + enriched uranium (fuel-cycle dependency),95075.849,4991.6,ZAF,69.14,USA,11.87,False
+critical_minerals,811252,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",168.218,4926.1,SYC,58.56,BEL,38.63,False
+critical_minerals,280512,"Alkali/alkaline-earth + rare-earth metals, Sc, Y, Hg (280530 = rare-earth metals proper)",193870.044,4527.3,CHN,65.66,FRA,12.78,False
+critical_minerals,280511,"Alkali/alkaline-earth + rare-earth metals, Sc, Y, Hg (280530 = rare-earth metals proper)",73832.726,4400.8,FRA,59.58,CHN,29.01,False
+critical_minerals,284190,"Other oxometallic/peroxometallic salts incl. vanadates, niobates",7301878.713,4237.5,KOR,60.17,CHN,20.35,True
+critical_minerals,850511,"Electromagnets + permanent magnets (850511 = metal permanent magnets, i.e. NdFeB/SmCo)",4962889.102,4097.6,CHN,62.66,JPN,8.63,True
+critical_minerals,811251,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",322.521,4013.8,JPN,60.29,CHN,12.29,False
+critical_minerals,284169,"Manganites, manganates, other permanganates (manganese chain)",62817.087,3574.8,CHN,56.22,KOR,13.09,False
+critical_minerals,380110,Artificial graphite + graphite preparations (battery-anode material),2309949.891,3510.6,CHN,57.67,JPN,7.51,True
+critical_minerals,380130,Artificial graphite + graphite preparations (battery-anode material),498306.324,3358.7,CHN,54.99,NOR,12.69,False
+critical_minerals,280519,"Alkali/alkaline-earth + rare-earth metals, Sc, Y, Hg (280530 = rare-earth metals proper)",286054.696,3181.3,CHN,50.49,DEU,17.94,False
+critical_minerals,811219,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",40475.395,3178.0,USA,50.26,KAZ,23.32,False
+critical_minerals,284161,Potassium permanganate (manganese chain),59508.38,3126.0,CHN,48.15,IND,25.45,False
+critical_minerals,850519,"Electromagnets + permanent magnets (850511 = metal permanent magnets, i.e. NdFeB/SmCo)",1708355.818,3050.2,CHN,54.05,DEU,5.5,True
+critical_minerals,282580,Antimony oxides (Sb under CHN export controls since Sep 2024),931853.303,2966.4,CHN,50.05,BEL,15.43,False
+critical_minerals,284410,Radioactive elements incl. natural + enriched uranium (fuel-cycle dependency),10709480.452,2850.6,KAZ,42.39,CAN,29.95,False
+critical_minerals,280530,"Alkali/alkaline-earth + rare-earth metals, Sc, Y, Hg (280530 = rare-earth metals proper)",516506.243,2547.9,VNM,37.85,AUS,24.8,False
+critical_minerals,284610,"Compounds of rare-earth metals, yttrium, scandium (REE oxides/salts, magnet feedstock)",196453.141,2316.9,JPN,38.58,FRA,24.17,False
+critical_minerals,280461,"Silicon: 280461 (>=99.99% pure, polysilicon for wafers) + 280469 (metallurgical Si)",3625664.179,2255.6,DEU,32.44,USA,30.07,False
+critical_minerals,811221,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",566662.143,2228.9,CHN,34.59,GBR,20.94,False
+critical_minerals,250410,Natural graphite (anode feedstock; CHN export permits since Dec 2023),485119.568,2193.5,CHN,43.37,MDG,10.16,False
+critical_minerals,250490,Natural graphite (anode feedstock; CHN export permits since Dec 2023),52324.303,2141.1,CHN,36.22,TZA,26.24,False
+critical_minerals,284450,Radioactive elements incl. natural + enriched uranium (fuel-cycle dependency),2005.48,2053.9,ISR,34.16,ZAF,22.52,False
+critical_minerals,282560,Germanium oxides + zirconium dioxide (Ge under CHN export controls since Aug 2023),421644.341,2031.1,CHN,39.62,JPN,13.97,False
+critical_minerals,380190,Artificial graphite + graphite preparations (battery-anode material),722758.05,2009.6,CHN,41.02,DEU,12.61,False
+critical_minerals,280469,"Silicon: 280461 (>=99.99% pure, polysilicon for wafers) + 280469 (metallurgical Si)",3889946.787,2001.2,CHN,39.98,NOR,12.57,False
+critical_minerals,811229,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",92605.549,1967.5,CHN,38.67,DEU,15.22,False
+critical_minerals,284180,Tungstates (W under CHN export controls Feb 2025),211397.654,1952.6,CHN,33.85,TWN,20.67,False
+critical_minerals,284690,"Compounds of rare-earth metals, yttrium, scandium (REE oxides/salts, magnet feedstock)",2377158.998,1889.6,MMR,34.4,MYS,16.26,False
+critical_minerals,280540,"Alkali/alkaline-earth + rare-earth metals, Sc, Y, Hg (280530 = rare-earth metals proper)",21021.803,1882.7,KGZ,29.8,ARE,24.39,False
+critical_minerals,811299,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",861987.655,1858.1,BRA,30.7,CHN,21.92,False
+critical_minerals,282530,Vanadium oxides and hydroxides (USGS-critical V chain),450657.964,1682.1,RUS,24.34,CHN,20.93,False
+critical_minerals,284420,Radioactive elements incl. natural + enriched uranium (fuel-cycle dependency),11473329.153,1615.9,RUS,24.34,FRA,19.31,False
+critical_minerals,380120,Artificial graphite + graphite preparations (battery-anode material),93374.506,1481.7,NLD,22.1,DEU,21.03,False
+critical_minerals,850520,"Electromagnets + permanent magnets (850511 = metal permanent magnets, i.e. NdFeB/SmCo)",964609.048,1421.3,DEU,30.11,CHN,15.95,False
+critical_minerals,811292,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",1105872.11,1388.3,CHN,28.88,DEU,17.27,False
+critical_minerals,282540,"Nickel oxides and hydroxides (cathode chain, USGS-critical Ni)",225966.482,1365.7,JPN,26.29,CHN,20.86,False
+critical_minerals,284440,Radioactive elements incl. natural + enriched uranium (fuel-cycle dependency),2752853.552,1279.1,CAN,26.53,NLD,14.89,False
+critical_minerals,850590,"Electromagnets + permanent magnets (850511 = metal permanent magnets, i.e. NdFeB/SmCo)",3191199.659,936.3,CHN,20.52,DEU,16.87,False
+critical_minerals,811222,"Be, Cr, Ge, V, Ga, Hf, In, Nb, Re, Tl wrought/unwrought (Ga/Ge under CHN export controls)",11727.979,773.7,NLD,12.87,GBR,12.73,False
+batteries,283691,Lithium carbonates (precursor salt for cathode manufacture),3779109.456,5865.7,CHL,74.47,ARG,17.62,True
+batteries,282520,Lithium oxide and hydroxide (battery-grade lithium chain),2718301.869,5609.2,CHN,73.83,CHL,9.92,True
+batteries,850740,"Electric accumulators: cells, packs, parts (850760 = lithium-ion, the dominant line)",3.9,5482.0,MYS,71.9,LBN,15.0,False
+batteries,850760,"Electric accumulators: cells, packs, parts (850760 = lithium-ion, the dominant line)",115704160.746,3618.1,CHN,58.87,POL,6.15,True
+batteries,850750,"Electric accumulators: cells, packs, parts (850760 = lithium-ion, the dominant line)",1769193.667,3284.3,JPN,50.7,CHN,25.78,True
+batteries,850780,"Electric accumulators: cells, packs, parts (850760 = lithium-ion, the dominant line)",1760691.399,2717.2,CHN,50.63,JPN,9.02,True
+batteries,850790,"Electric accumulators: cells, packs, parts (850760 = lithium-ion, the dominant line)",7759613.412,1973.1,CHN,42.2,KOR,6.45,False
+batteries,850730,"Electric accumulators: cells, packs, parts (850760 = lithium-ion, the dominant line)",885471.78,1257.1,USA,20.45,FRA,16.77,False
+batteries,850720,"Electric accumulators: cells, packs, parts (850760 = lithium-ion, the dominant line)",8340899.173,945.8,CHN,23.99,VNM,11.54,False
+batteries,850710,"Electric accumulators: cells, packs, parts (850760 = lithium-ion, the dominant line)",13805646.078,729.0,KOR,16.04,DEU,11.32,False
+pharma_apis,293963,"Alkaloids (opiates, caffeine, ephedrines, etc.)",5564.368,9437.8,HUN,97.13,CHN,1.85,False
+pharma_apis,294140,"Antibiotics (penicillins, cephalosporins, macrolides, etc.)",134803.813,8148.0,CHN,90.18,ESP,2.46,False
+pharma_apis,293711,Hormones incl. steroids and insulin,599394.586,6530.9,SWE,80.03,CHE,9.65,True
+pharma_apis,293392,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",2361.308,5409.8,CHN,72.72,POL,7.94,False
+pharma_apis,294150,"Antibiotics (penicillins, cephalosporins, macrolides, etc.)",523010.796,5365.5,CHN,70.97,IND,17.78,True
+pharma_apis,293352,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",15803.302,5322.9,CHN,70.8,KOR,16.88,False
+pharma_apis,293949,"Alkaloids (opiates, caffeine, ephedrines, etc.)",22000.917,4892.5,IRL,65.2,IND,24.96,False
+pharma_apis,293944,"Alkaloids (opiates, caffeine, ephedrines, etc.)",5067.002,4709.2,TWN,54.22,IND,42.0,False
+pharma_apis,293520,Sulfonamides,672.855,4550.0,USA,58.82,CHN,31.76,False
+pharma_apis,294120,"Antibiotics (penicillins, cephalosporins, macrolides, etc.)",67721.292,4400.6,CHN,63.89,NLD,16.44,False
+pharma_apis,293550,Sulfonamides,5748.034,4352.4,IND,61.02,ESP,23.41,False
+pharma_apis,294130,"Antibiotics (penicillins, cephalosporins, macrolides, etc.)",628662.259,4269.6,CHN,63.99,ITA,9.37,True
+pharma_apis,293625,Provitamins and vitamins,312248.068,4247.7,CHN,60.98,DEU,20.62,False
+pharma_apis,293341,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",3843.415,4114.1,IRL,49.3,IND,40.43,False
+pharma_apis,293962,"Alkaloids (opiates, caffeine, ephedrines, etc.)",7964.421,4113.1,CZE,60.08,CHE,18.57,False
+pharma_apis,293942,"Alkaloids (opiates, caffeine, ephedrines, etc.)",59424.135,3972.4,IND,51.56,DEU,35.76,False
+pharma_apis,293719,Hormones incl. steroids and insulin,32612661.767,3937.8,IRL,56.08,USA,27.08,True
+pharma_apis,293420,Nucleic acids and other heterocyclic compounds,581383.118,3894.3,CHN,60.21,BEL,13.5,True
+pharma_apis,293721,Hormones incl. steroids and insulin,271170.399,3773.8,CHN,59.51,USA,8.61,False
+pharma_apis,293941,"Alkaloids (opiates, caffeine, ephedrines, etc.)",3635.71,3583.3,IND,55.86,DEU,20.12,False
+pharma_apis,293627,Provitamins and vitamins,1151801.022,3549.3,CHN,56.72,GBR,15.92,False
+pharma_apis,293959,"Alkaloids (opiates, caffeine, ephedrines, etc.)",82844.162,3546.5,IND,55.39,CHN,17.88,False
+pharma_apis,293951,"Alkaloids (opiates, caffeine, ephedrines, etc.)",461.206,3478.6,CHN,48.01,ITA,27.27,False
+pharma_apis,294110,"Antibiotics (penicillins, cephalosporins, macrolides, etc.)",2508000.5,3445.8,CHN,55.71,IND,13.12,False
+pharma_apis,293943,"Alkaloids (opiates, caffeine, ephedrines, etc.)",221.845,3396.9,USA,47.78,AUS,30.2,False
+pharma_apis,293530,Sulfonamides,1368.71,3345.1,IND,39.42,ESP,34.15,False
+pharma_apis,293622,Provitamins and vitamins,431598.852,3242.8,CHN,49.21,DEU,25.32,False
+pharma_apis,293624,Provitamins and vitamins,416412.251,3232.7,CHN,52.12,GBR,18.49,False
+pharma_apis,293331,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",124405.453,3228.8,IND,53.73,CHN,15.32,False
+pharma_apis,293361,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",1078239.718,3207.4,CHN,53.38,NLD,13.67,False
+pharma_apis,293311,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",114853.381,3190.8,CHN,44.99,DEU,32.37,False
+pharma_apis,293969,"Alkaloids (opiates, caffeine, ephedrines, etc.)",81365.965,3112.1,CZE,51.17,ITA,20.45,False
+pharma_apis,293369,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",2568825.965,3019.7,CHN,52.81,DEU,10.64,False
+pharma_apis,293319,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",6909301.194,2958.6,CHE,49.98,IRL,13.55,False
+pharma_apis,293626,Provitamins and vitamins,335964.298,2896.3,CHN,50.61,FRA,15.13,False
+pharma_apis,293971,"Alkaloids (opiates, caffeine, ephedrines, etc.)",4625.378,2893.1,GBR,49.85,DEU,13.0,False
+pharma_apis,293628,Provitamins and vitamins,2513597.369,2795.5,CHN,47.58,CHE,18.79,False
+pharma_apis,293540,Sulfonamides,72.371,2758.7,CHN,39.68,NLD,27.63,False
+pharma_apis,293372,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",11608.324,2677.9,FRA,34.58,DEU,32.1,False
+pharma_apis,293332,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",51764.166,2647.2,IND,44.28,CHN,22.64,False
+pharma_apis,293930,"Alkaloids (opiates, caffeine, ephedrines, etc.)",568002.839,2509.2,CHN,38.7,DEU,29.17,False
+pharma_apis,293712,Hormones incl. steroids and insulin,539963.466,2488.6,DNK,44.56,USA,13.7,False
+pharma_apis,293355,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",1644.316,2379.0,DEU,30.86,IND,27.69,False
+pharma_apis,294200,Other organic compounds,1225030.756,2354.4,IND,46.05,CHN,9.27,False
+pharma_apis,293890,Glycosides,1509478.301,2352.8,CHN,45.8,FRA,11.98,False
+pharma_apis,293810,Glycosides,176012.726,2191.9,CHN,35.93,ESP,22.72,False
+pharma_apis,293920,"Alkaloids (opiates, caffeine, ephedrines, etc.)",68669.703,2118.1,DEU,38.07,IND,17.21,False
+pharma_apis,293623,Provitamins and vitamins,372086.47,2114.2,DEU,30.43,CHN,26.63,False
+pharma_apis,293410,Nucleic acids and other heterocyclic compounds,3337276.008,2112.3,CHE,40.83,CHN,13.9,False
+pharma_apis,293359,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",22783588.051,2025.3,CHE,30.23,IRL,26.73,False
+pharma_apis,293391,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",112540.764,1995.9,ITA,38.05,IND,17.92,False
+pharma_apis,293590,Sulfonamides,8618780.126,1969.6,CHE,30.01,IRL,29.75,False
+pharma_apis,293961,"Alkaloids (opiates, caffeine, ephedrines, etc.)",1500.519,1932.7,CZE,34.37,ITA,22.69,False
+pharma_apis,293321,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",99028.835,1894.5,CHN,39.89,USA,9.83,False
+pharma_apis,293371,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",1556163.699,1838.7,BEL,30.37,RUS,23.44,False
+pharma_apis,294190,"Antibiotics (penicillins, cephalosporins, macrolides, etc.)",7455178.432,1807.4,CHN,37.67,CHE,10.97,False
+pharma_apis,293491,Nucleic acids and other heterocyclic compounds,32904.691,1729.5,IND,32.79,ITA,17.92,False
+pharma_apis,293729,Hormones incl. steroids and insulin,2480544.379,1696.5,BEL,34.09,CHN,14.2,False
+pharma_apis,293723,Hormones incl. steroids and insulin,737333.814,1656.5,CHN,30.0,ITA,19.58,False
+pharma_apis,293621,Provitamins and vitamins,650120.967,1638.7,CHN,27.19,CHE,23.97,False
+pharma_apis,293349,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",1579929.612,1632.9,CHN,22.12,IRL,21.56,False
+pharma_apis,293510,Sulfonamides,19086.199,1614.8,FRA,23.88,IND,23.72,False
+pharma_apis,293333,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",106655.829,1553.4,CHE,28.71,IND,16.02,False
+pharma_apis,293354,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",13013.859,1545.0,IND,25.87,CHN,18.95,False
+pharma_apis,293353,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",57026.805,1533.4,IRL,30.37,DEU,12.97,False
+pharma_apis,293379,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",14128730.07,1477.0,IRL,28.81,FRA,15.47,False
+pharma_apis,293722,Hormones incl. steroids and insulin,815537.362,1443.9,GBR,25.18,SGP,18.76,False
+pharma_apis,293399,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",14885536.6,1400.1,CHN,28.32,CHE,14.84,False
+pharma_apis,293629,Provitamins and vitamins,2086115.112,1396.1,CHN,30.17,CHE,12.8,False
+pharma_apis,293911,"Alkaloids (opiates, caffeine, ephedrines, etc.)",376738.494,1365.5,AUS,23.63,GBR,21.41,False
+pharma_apis,293790,Hormones incl. steroids and insulin,395879.113,1332.5,CHN,23.77,IRL,18.44,False
+pharma_apis,293750,Hormones incl. steroids and insulin,327025.366,1296.6,CZE,23.3,USA,16.54,False
+pharma_apis,293980,"Alkaloids (opiates, caffeine, ephedrines, etc.)",70173.764,1281.1,IND,24.0,CHN,21.13,False
+pharma_apis,293329,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",1774930.707,1188.8,CHN,25.07,FRA,12.82,False
+pharma_apis,293979,"Alkaloids (opiates, caffeine, ephedrines, etc.)",855177.397,1163.5,CHE,20.06,IND,17.08,False
+pharma_apis,293430,Nucleic acids and other heterocyclic compounds,110229.973,1160.9,FRA,19.33,DEU,17.57,False
+pharma_apis,294000,"Chemically pure sugars, sugar ethers/esters",1533349.182,1125.5,CHN,21.51,DEU,19.71,False
+pharma_apis,293339,"Heterocyclic compounds, nitrogen hetero-atoms (core API scaffolds)",11008860.652,1107.4,CHN,23.97,CHE,12.59,False
+pharma_apis,293919,"Alkaloids (opiates, caffeine, ephedrines, etc.)",293415.875,1099.6,FRA,18.0,USA,15.33,False
+pharma_apis,293499,Nucleic acids and other heterocyclic compounds,26638738.246,1041.5,IRL,20.48,CHN,16.19,False
+pharma_apis,293690,Provitamins and vitamins,1044375.841,789.8,USA,16.86,CHN,12.83,False
+aerospace,841121,"Turbojets, turboprops, other gas turbines + parts (the aeroengine trade)",1657110.044,2989.8,CAN,50.76,USA,16.43,True
+aerospace,841111,"Turbojets, turboprops, other gas turbines + parts (the aeroengine trade)",1296721.742,2548.6,USA,43.38,CAN,23.81,True
+aerospace,841181,"Turbojets, turboprops, other gas turbines + parts (the aeroengine trade)",3243922.585,1939.8,USA,38.64,CAN,15.61,True
+aerospace,880230,"Aircraft and spacecraft: airplanes, helicopters, satellites, launch vehicles",16471252.368,1912.2,USA,36.73,FRA,16.32,True
+aerospace,880260,"Aircraft and spacecraft: airplanes, helicopters, satellites, launch vehicles",2740289.266,1894.4,DEU,37.02,FRA,15.33,True
+aerospace,841122,"Turbojets, turboprops, other gas turbines + parts (the aeroengine trade)",2835250.259,1872.1,SGP,30.76,CAN,23.69,False
+aerospace,880220,"Aircraft and spacecraft: airplanes, helicopters, satellites, launch vehicles",1270869.836,1779.5,USA,37.63,AUT,13.41,False
+aerospace,841182,"Turbojets, turboprops, other gas turbines + parts (the aeroengine trade)",6331575.924,1640.0,USA,34.48,ITA,13.7,False
+aerospace,880240,"Aircraft and spacecraft: airplanes, helicopters, satellites, launch vehicles",116884950.394,1524.0,FRA,23.89,USA,22.05,False
+aerospace,880211,"Aircraft and spacecraft: airplanes, helicopters, satellites, launch vehicles",2052020.92,1512.8,FRA,25.5,CAN,19.97,False
+aerospace,841112,"Turbojets, turboprops, other gas turbines + parts (the aeroengine trade)",83333803.62,1345.3,USA,24.14,GBR,19.75,False
+aerospace,841191,"Turbojets, turboprops, other gas turbines + parts (the aeroengine trade)",76391051.607,1293.9,USA,26.4,GBR,17.54,False
+aerospace,880212,"Aircraft and spacecraft: airplanes, helicopters, satellites, launch vehicles",5655901.105,1259.1,USA,21.31,ITA,18.44,False
+aerospace,841199,"Turbojets, turboprops, other gas turbines + parts (the aeroengine trade)",25985340.177,1130.9,USA,27.71,DEU,9.68,False

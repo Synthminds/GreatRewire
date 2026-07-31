@@ -1,0 +1,40 @@
+# source: CEPII BACI HS17 V202601, year 2024 (via data/processed/baci_2024_hs6.parquet)
+# pulled: 2026-07-30
+# license: Etalab 2.0
+# script: analysis/20_multigraph.py
+# unit: *_kusd values are THOUSANDS of current USD (BACI native 'v'); USD = kusd * 1e3
+# note: Taiwan = BACI code 490 'Other Asia, nes', recoded to TWN (iso3_recode)
+# note: de minimis 1.0 kUSD on layer edges; HHI on 0..10,000 scale;
+#       betweenness distance = 1/ln(1+v_kusd); eigenvector on undirected projection
+# focus set = TWN,CHN,USA,KOR,JPN,NLD; None rank = country absent from layer
+layer,iso3,export_share_pct,export_rank,betweenness_rank,eigenvector_rank,n_layer_countries,agg_strength_rank,agg_betweenness_rank
+semiconductors,TWN,19.6376,1,19,2,226,13,29
+semiconductors,CHN,19.3993,2,1,1,226,1,1
+semiconductors,USA,6.0263,7,2,9,226,2,2
+semiconductors,KOR,12.7099,3,8,4,226,6,8
+semiconductors,JPN,7.2491,6,4,7,226,4,18
+semiconductors,NLD,2.5567,9,6,10,226,7,6
+critical_minerals,TWN,0.6227,22,7,21,219,13,29
+critical_minerals,CHN,23.4188,1,2,1,219,1,1
+critical_minerals,USA,6.0165,6,1,3,219,2,2
+critical_minerals,KOR,7.6704,2,46,2,219,6,8
+critical_minerals,JPN,4.4368,9,17,4,219,4,18
+critical_minerals,NLD,3.7909,10,10,12,219,7,6
+batteries,TWN,0.6328,18,58,21,224,13,29
+batteries,CHN,49.9942,1,1,1,224,1,1
+batteries,USA,4.7716,5,2,2,224,2,2
+batteries,KOR,5.1341,3,11,4,224,6,8
+batteries,JPN,3.4038,7,33,5,224,4,18
+batteries,NLD,0.8305,15,19,17,224,7,6
+pharma_apis,TWN,0.2786,23,58,30,219,13,29
+pharma_apis,CHN,18.3355,2,1,5,219,1,1
+pharma_apis,USA,8.6274,4,2,1,219,2,2
+pharma_apis,KOR,0.9742,16,32,20,219,6,8
+pharma_apis,JPN,1.6369,14,19,14,219,4,18
+pharma_apis,NLD,1.708,13,10,15,219,7,6
+aerospace,TWN,0.375,28,67,19,215,13,29
+aerospace,CHN,2.5096,9,11,6,215,1,1
+aerospace,USA,24.9147,1,1,1,215,2,2
+aerospace,KOR,0.6782,20,29,13,215,6,8
+aerospace,JPN,1.9765,11,49,7,215,4,18
+aerospace,NLD,0.7483,19,12,20,215,7,6

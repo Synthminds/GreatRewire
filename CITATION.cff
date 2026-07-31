@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If this repository or its results are used, please cite it as below."
+title: "The Great Rewiring: Pricing Modern Mercantilism and Artificial Intelligence on the World Trade Web"
+abstract: >-
+  Reproduction package for a study that treats the world trade network as a single object and
+  prices two simultaneous resource grabs against it. It ports the CompleNet 2022 synthetic
+  world-trade-web generator to Python, validates the port against the published statistics to
+  within approximately 3.5%, runs it forward as a no-rewiring null, tests that null with a
+  uniformity placebo across roughly 2,653 untreated dyads, finds it approximately 4.1 times
+  over-confident, and replaces it with an Efron empirical null. Also contains an attack
+  percolation of the 2024 network and ten locked binary forecasts.
+type: software
+version: 1.0.0
+date-released: "2026-07-31"
+license: MIT
+authors:
+  - family-names: Shields
+    given-names: Wes
+    email: wes@synthminds.ai
+    affiliation: "Synthminds AI"
+repository-code: "https://github.com/Synthminds/GreatRewire"
+url: "https://neural-graph.vercel.app"
+keywords:
+  - world trade network
+  - network science
+  - counterfactual simulation
+  - empirical null
+  - calibration
+  - forecasting
+  - industrial policy
+  - artificial intelligence infrastructure
+references:
+  - type: conference-paper
+    title: "Building a Reliable, Dynamic and Temporal Synthetic Model of the World Trade Web"
+    year: 2022
+    collection-title: "CompleNet 2022"
+    authors:
+      - family-names: Kennedy
+      - family-names: Wish
+      - family-names: Smith
+      - family-names: Sherrell
+      - family-names: Shields
+      - family-names: Gera
+    notes: "Source of Equations 2 through 8 as ported in models/wtw_model.py."
+  - type: database
+    title: "BACI: International Trade Database at the Product Level, HS17 release V202601"
+    year: 2026
+    institution:
+      name: "CEPII"
+    url: "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37"
+    notes: >-
+      Underlying source of every trade weight in this repository. Not redistributed here. Any
+      reuse of the derived trade tables must credit CEPII BACI HS17 V202601.

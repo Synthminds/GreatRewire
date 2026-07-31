@@ -1,0 +1,226 @@
+{
+  "schema": "greatrewire-agent-manifest/1",
+  "name": "The Great Rewiring",
+  "version": "1.0.0",
+  "updated": "2026-07-31",
+  "summary": "Reproduction package that prices modern mercantilism and artificial intelligence on the world trade network, using a validated port of the CompleNet 2022 synthetic world-trade-web generator as a no-rewiring null.",
+  "entry_point": "AGENTS.md",
+  "documentation": {
+    "agents": "AGENTS.md",
+    "readme": "README.md",
+    "method": "docs/METHOD.md",
+    "data": "docs/DATA.md",
+    "findings": "docs/FINDINGS.md",
+    "companion": "demo/README.md"
+  },
+  "repository": "https://github.com/Synthminds/GreatRewire",
+  "companion_url": "https://neural-graph.vercel.app",
+  "companion_data_url": "https://project-daw86.vercel.app/data.js",
+  "license": "MIT",
+  "contact": "wes@synthminds.ai",
+  "runtime": {
+    "language": "python",
+    "version": "3.11",
+    "requirements": "requirements.txt",
+    "working_directory": "repository root"
+  },
+  "preconditions": {
+    "trade_panel": {
+      "path": "data/processed/wtw_agg_2017_2024.csv",
+      "shipped": false,
+      "reason": "Direct aggregation of CEPII BACI values. Not redistributable and above the size discipline of this repository.",
+      "produced_by": "C1",
+      "gates": ["C2", "C4", "C5", "C6", "C7", "C8", "C9"]
+    }
+  },
+  "capabilities": [
+    {
+      "id": "C1",
+      "name": "build_trade_panel",
+      "entry_point": "analysis/10_baci_aggregate.py",
+      "command": "python3 analysis/10_baci_aggregate.py",
+      "reads": ["CEPII BACI HS17 V202601 archive, downloaded on demand"],
+      "writes": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/baci_2024_hs6.parquet", "data/processed/baci_country_codes.csv"],
+      "runtime_minutes": [20, 40],
+      "runtime_basis": "estimated",
+      "network": true
+    },
+    {
+      "id": "C2",
+      "name": "build_sector_multigraph",
+      "entry_point": "analysis/20_multigraph.py",
+      "command": "python3 analysis/20_multigraph.py",
+      "reads": ["data/processed/baci_2024_hs6.parquet", "data/processed/baci_country_codes.csv", "data/processed/wtw_agg_2017_2024.csv"],
+      "writes": ["data/processed/multigraph/"],
+      "runtime_minutes": [3, 8],
+      "runtime_basis": "estimated",
+      "network": false
+    },
+    {
+      "id": "C3",
+      "name": "validate_generator",
+      "entry_point": "models/validate_completnet.py",
+      "command": "python3 models/validate_completnet.py --iters 30 --seed 42",
+      "reads": ["data/processed/wdi_gdp_1995_2024.csv"],
+      "writes": ["data/processed/port_validation.csv"],
+      "runtime_minutes": [5, 12],
+      "runtime_basis": "estimated",
+      "network": false
+    },
+    {
+      "id": "C4",
+      "name": "run_counterfactual_ensemble",
+      "entry_point": "analysis/40_counterfactual.py",
+      "command": "python3 analysis/40_counterfactual.py",
+      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv", "data/processed/imf_weo_ngdpd_2020_2028.csv"],
+      "writes": ["data/processed/counterfactual_ensemble.csv", "data/processed/counterfactual_corridors.csv"],
+      "runtime_minutes": [2, 4],
+      "runtime_basis": "measured",
+      "network": false,
+      "guardrail": "G2"
+    },
+    {
+      "id": "C5",
+      "name": "run_attack_percolation",
+      "entry_point": "analysis/41_attack.py",
+      "command": "python3 analysis/41_attack.py",
+      "reads": ["data/processed/wtw_agg_2017_2024.csv"],
+      "writes": ["data/processed/attack_curves.csv"],
+      "runtime_minutes": [2, 5],
+      "runtime_basis": "estimated",
+      "network": false
+    },
+    {
+      "id": "C6",
+      "name": "run_rf_checks",
+      "entry_point": "analysis/70_rf_rigor.py",
+      "command": "python3 analysis/70_rf_rigor.py",
+      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv"],
+      "writes": ["figures/x4_validation.pdf"],
+      "runtime_minutes": [3, 8],
+      "runtime_basis": "estimated",
+      "network": false
+    },
+    {
+      "id": "C7",
+      "name": "run_uniformity_placebo",
+      "entry_point": "analysis/71_placebo.py",
+      "command": "python3 analysis/71_placebo.py",
+      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv"],
+      "writes": ["data/processed/placebo_results.json"],
+      "runtime_minutes": [6, 10],
+      "runtime_basis": "measured",
+      "network": false
+    },
+    {
+      "id": "C8",
+      "name": "run_empirical_null",
+      "entry_point": "analysis/72_empirical_null.py",
+      "command": "python3 analysis/72_empirical_null.py",
+      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv"],
+      "writes": ["data/processed/empirical_null.json"],
+      "runtime_minutes": [6, 10],
+      "runtime_basis": "estimated",
+      "network": false
+    },
+    {
+      "id": "C9",
+      "name": "export_calibration",
+      "entry_point": "analysis/73_calib_export.py",
+      "command": "python3 analysis/73_calib_export.py",
+      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv"],
+      "writes": ["data/processed/calib_export.json"],
+      "runtime_minutes": [3, 5],
+      "runtime_basis": "estimated",
+      "network": false
+    },
+    {
+      "id": "C10",
+      "name": "rebuild_companion_data",
+      "entry_point": "demo/build_data.py",
+      "command": "python3 demo/build_data.py",
+      "reads": ["demo/data.js", "data/processed/calib_export.json", "data/processed/empirical_null.json"],
+      "writes": ["demo/data.js"],
+      "runtime_minutes": [0, 1],
+      "runtime_basis": "measured",
+      "network": false
+    },
+    {
+      "id": "C11",
+      "name": "selftest_generator",
+      "entry_point": "models/wtw_model.py",
+      "command": "python3 models/wtw_model.py",
+      "reads": [],
+      "writes": [],
+      "runtime_minutes": [0, 1],
+      "runtime_basis": "measured",
+      "network": false
+    }
+  ],
+  "determinism": {
+    "seeds": {
+      "analysis/40_counterfactual.py": 1000,
+      "analysis/41_attack.py": 7000,
+      "analysis/70_rf_rigor.py": 42,
+      "analysis/71_placebo.py": [1000, 5000],
+      "analysis/72_empirical_null.py": [1000, 5000],
+      "analysis/73_calib_export.py": 1000,
+      "models/validate_completnet.py": 42
+    },
+    "worker_count_affects_results": false,
+    "default_max_workers": 8,
+    "byte_stable_outputs": ["data/processed/multigraph/", "demo/data.js"]
+  },
+  "guardrails": [
+    {
+      "id": "G1",
+      "rule": "Never redistribute raw CEPII BACI or the bilateral panel derived directly from it.",
+      "applies_to": ["data/processed/baci_2024_hs6.parquet", "data/processed/baci_country_codes.csv", "data/processed/wtw_agg_2017_2024.csv"],
+      "correct_response": "Return the cepii.fr download instruction plus capability C1, never the file."
+    },
+    {
+      "id": "G2",
+      "rule": "Never present a raw ensemble percentile as a p-value.",
+      "evidence": {
+        "dyads": 2653,
+        "frac_below_p5": 0.283,
+        "frac_above_p95": 0.275,
+        "ks_vs_uniform": 0.239,
+        "model_sd_dex": 0.104,
+        "cross_sectional_sd_dex": 0.421,
+        "over_dispersion_main": 4.1,
+        "over_dispersion_pre_period": 10.7
+      },
+      "correct_response": "Quote empirical_pctile from data/processed/empirical_null.json and name it a rank among comparable dyads."
+    },
+    {
+      "id": "G3",
+      "rule": "Never alter a printed forecast probability without a dated written rationale recorded alongside it.",
+      "applies_to": ["demo/build_data.py", "notes/LOCKED-SLATE-v5.md"]
+    },
+    {
+      "id": "G4",
+      "rule": "Slate IDs are stable and must not be renumbered.",
+      "stable_ids": ["A1", "A2", "A3", "B4", "B5", "C6", "C7", "C8", "C9", "D10"],
+      "correct_response": "Append a new ID to add a forecast; mark retired in place to remove one."
+    }
+  ],
+  "headline_results": {
+    "port_validation_max_deviation_pct": 3.5,
+    "attack_10pct_targeted_surviving_weight_share": 0.084,
+    "attack_10pct_random_surviving_weight_share": 0.837,
+    "chn_usa_ratio_vs_benchmark_median": 0.86,
+    "chn_usa_empirical_pctile": 0.344,
+    "vnm_usa_ratio_vs_benchmark_median": 1.26,
+    "vnm_usa_empirical_pctile": 0.748
+  },
+  "slate": {
+    "version": "5.0",
+    "locked": "2026-07-31",
+    "record": "notes/LOCKED-SLATE-v5.md",
+    "forecasts": {
+      "A1": 62, "A2": 38, "A3": 45, "B4": 45, "B5": 20,
+      "C6": 45, "C7": 75, "C8": 55, "C9": 42, "D10": 35
+    }
+  }
+}

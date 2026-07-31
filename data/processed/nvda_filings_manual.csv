@@ -1,0 +1,8 @@
+# source: SEC EDGAR submissions API, CIK 0001045810 (NVIDIA)
+# pulled: 2026-07-30
+# script: analysis/04_pull_nvda_filings.py
+# units: n/a — MANUAL-READ list; China revenue share lives in the geographic-segment note (revenue by customer billing location) of these documents, not in companyconcept XBRL
+form,accession,filing_date,report_date,doc_url,status
+10-Q,0001045810-26-000052,2026-05-20,2026-04-26,https://www.sec.gov/Archives/edgar/data/1045810/000104581026000052/nvda-20260426.htm,MANUAL-READ
+10-K,0001045810-26-000021,2026-02-25,2026-01-25,https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm,MANUAL-READ
+10-Q,0001045810-25-000230,2025-11-19,2025-10-26,https://www.sec.gov/Archives/edgar/data/1045810/000104581025000230/nvda-20251026.htm,MANUAL-READ

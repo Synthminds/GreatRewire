@@ -1,0 +1,64 @@
+# source: assembled from data/processed/big4_capex_combined_quarterly.csv + big4_capex_quarterly.csv
+#         (SEC EDGAR XBRL, pulled 2026-07-30), data/processed/eia_net_generation_twh.csv (EIA MER
+#         Table 7.2a, pulled 2026-07-30), and constants transcribed from notes/infra-evidence.md:
+#         LBNL-2001637 (Dec 2024) + LBNL 2025 Update (Jun 2026); LBNL Queued Up 2026 (Jul 1, 2026);
+#         Epoch AI (May 28, 2024) + Epoch x EPRI (Aug 11, 2025); MSFT FY26 Q2 (Jan 28, 2026) and
+#         FY26 Q4 (Jul 29, 2026) releases. Full URLs + confidence grades: notes/infra-evidence.md
+# built: 2026-07-30
+# script: analysis/22_x3_envelope.py
+# schema: series,period,value,value_high,unit,source,note (ranges use value..value_high)
+# units: usd_bn = billions of current USD; twh = terawatt-hours; gw = gigawatts
+# caveat: big4 capex = CASH capex, EXCLUDES finance leases (understates commitments, esp. MSFT);
+#   LBNL dc shares = % of US electricity CONSUMPTION, EIA rows = net GENERATION (~5% larger
+#   denominator) -- do not mix silently
+# note: assembled inputs only; no modeling
+series,period,value,value_high,unit,source,note
+big4_capex,2023Q1,33.926,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2023Q1,-4.48,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2023Q2,33.42,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2023Q2,-9.66,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2023Q3,36.947,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2023Q3,-6.02,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2023Q4,42.934,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2023Q4,9.36,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2024Q1,44.289,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2024Q1,30.55,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2024Q2,52.852,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2024Q2,58.14,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2024Q3,58.862,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2024Q3,59.31,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2024Q4,72.339,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2024Q4,68.49,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2025Q1,71.902,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2025Q1,62.35,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2025Q2,88.246,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2025Q2,66.97,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2025Q3,97.271,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2025Q3,65.25,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2025Q4,118.632,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2025Q4,63.99,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex,2026Q1,129.75,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),MSFT+GOOGL+AMZN+META cash capex; ex-finance-leases
+big4_capex_yoy,2026Q1,80.45,,pct,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),combined vs same quarter prior year
+big4_capex_partial,2026Q2,80.726,,usd_bn,SEC EDGAR XBRL via analysis/03_pull_sec_capex.py (pulled 2026-07-30),PARTIAL: GOOGL+MSFT only (2/4 filed by pull date); not comparable to big4_capex
+us_net_generation,2023,4183.3,,twh,EIA MER Table 7.2a via analysis/07_pull_eia_generation.py (pulled 2026-07-30),"total US electricity net generation, all sectors"
+us_net_generation,2024,4308.6,,twh,EIA MER Table 7.2a via analysis/07_pull_eia_generation.py (pulled 2026-07-30),"total US electricity net generation, all sectors"
+us_net_generation,2025,4429.5,,twh,EIA MER Table 7.2a via analysis/07_pull_eia_generation.py (pulled 2026-07-30),"total US electricity net generation, all sectors"
+us_net_generation,202505..202604,4456.3,,twh,EIA MER Table 7.2a via analysis/07_pull_eia_generation.py (pulled 2026-07-30),trailing 12 months (YYYYMM..YYYYMM)
+lbnl_dc_consumption,2023,176.0,,twh,"LBNL-2001637, US Data Center Energy Usage Report (Dec 2024)","US data centers, actual"
+lbnl_dc_consumption,2024,192.0,,twh,LBNL US Data Center Energy Usage Report: 2025 Update (Jun 2026),"US data centers, actual"
+lbnl_dc_consumption,2028,464.0,,twh,LBNL US Data Center Energy Usage Report: 2025 Update (Jun 2026),Reference Case forecast
+lbnl_dc_consumption,2030,649.0,,twh,LBNL US Data Center Energy Usage Report: 2025 Update (Jun 2026),central; scenario range 521-843 TWh
+lbnl_dc_consumption_range,2030,521.0,843.0,twh,LBNL US Data Center Energy Usage Report: 2025 Update (Jun 2026),2030 scenario range (low/consolidated..high-inference)
+lbnl_dc_share,2023,4.4,,pct_us_consumption,"LBNL-2001637, US Data Center Energy Usage Report (Dec 2024)",share of US electricity consumption
+lbnl_dc_share,2024,4.7,,pct_us_consumption,LBNL US Data Center Energy Usage Report: 2025 Update (Jun 2026),share of US electricity consumption
+lbnl_dc_share,2030,11.8,,pct_us_consumption,LBNL US Data Center Energy Usage Report: 2025 Update (Jun 2026),central scenario
+lbnl_dc_share_range,2030,9.5,15.3,pct_us_consumption,LBNL US Data Center Energy Usage Report: 2025 Update (Jun 2026),2030 scenario range
+queue_active_capacity,end-2025,2061.0,,gw,"LBNL Queued Up: 2026 Edition (Jul 1, 2026; data through end-2025)",active generation+storage in interconnection queues; -10% yoy (first decline); >750 GW withdrawn in 2025
+queue_active_capacity,end-2023,2600.0,,gw,"LBNL Queued Up: 2026 Edition (Jul 1, 2026; data through end-2025)","approximate peak (~2,600 GW)"
+queue_request_to_cod,end-2025,5.0,,years,"LBNL Queued Up: 2026 Edition (Jul 1, 2026; data through end-2025)",median request->commercial operation >5 yr; median request->IA >3 yr
+queue_completion_rate,2000-2020 cohort,13.0,,pct,"LBNL Queued Up: 2026 Edition (Jul 1, 2026; data through end-2025)",share of 2000-2020 requests that reached COD; 75% withdrawn
+epoch_compute_growth,2010-2024,4.0,5.0,x_per_year,"Epoch AI, Sevilla & Roldan (May 28, 2024)",frontier-model training compute; frontier subset 5.3x/yr (90% CI 4.9-5.7)
+epoch_training_power_growth,projected to 2030,2.2,2.9,x_per_year,"Epoch AI x EPRI (Aug 11, 2025)",frontier training power
+epoch_largest_run_power,2030,4.0,16.0,gw,"Epoch AI x EPRI (Aug 11, 2025)",largest single training run; >50 GW US / >100 GW global AI capacity 'plausible' by 2030
+msft_commercial_rpo,2025-12-31,625.0,,usd_bn,"MSFT FY26 Q2 release (Jan 28, 2026)","commercial RPO, up ~110% yoy; OpenAI ~45% (BI)"
+msft_commercial_rpo,2026-06-30,678.0,,usd_bn,"MSFT FY26 Q4 release (Jul 29, 2026)","commercial RPO, +84% yoy; FY26 capex $115.95B; CY2026 capex framework ~$190B (Hood)"
