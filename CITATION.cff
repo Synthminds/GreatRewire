@@ -11,11 +11,11 @@ abstract: >-
   percolation of the 2024 network and ten locked binary forecasts.
 type: software
 version: 1.0.0
-date-released: "2026-07-31"
+date-released: "2026-08-01"
 license: MIT
 authors:
   - family-names: Shields
-    given-names: Wes
+    given-names: William E.
     email: wes@synthminds.ai
     affiliation: "Synthminds AI"
 repository-code: "https://github.com/Synthminds/GreatRewire"
