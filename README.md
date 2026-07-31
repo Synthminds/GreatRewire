@@ -186,12 +186,11 @@ used them to expand the option space, generating alternative framings and counte
 to evaluate. We used them to surface candidate patterns across studies and datasets, each of which
 we then checked against the sources ourselves. We also used them to challenge our assumptions and
 to hunt for gaps and bias in our own reasoning, and to improve readability. They assisted in
-writing and debugging the Python in `analysis/` and `models/` that builds the panel, runs the
-counterfactual ensembles, and produces the exhibits. However, we verified every output, result,
-and line of code against the underlying data and against established method before it entered the
-paper. Of note, no probability, threshold, resolution criterion, or conclusion was set by a model.
-We reviewed and edited all content, we take full responsibility for it, and the ideas put forward
-are our own.
+writing and debugging the Python that builds the panel, runs the counterfactual ensembles, and
+produces the exhibits. However, we verified every output, result, and line of code against the
+underlying data and against established method before it entered this paper. Of note, no
+probability, threshold, resolution criterion, or conclusion here was set by a model. We reviewed
+and edited all content, we take full responsibility for it, and the ideas put forward are our own.
 
 This declaration appears verbatim in the paper's front matter.
 
