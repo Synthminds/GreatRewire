@@ -1,5 +1,7 @@
 # The Great Rewiring
 
+[![verify](https://github.com/Synthminds/GreatRewire/actions/workflows/verify.yml/badge.svg)](https://github.com/Synthminds/GreatRewire/actions/workflows/verify.yml)
+
 Two resource grabs, one network: pricing modern mercantilism and artificial intelligence on the
 world trade web. Reproduction package for a submission to Bridgewater and Global Citizen,
 *Forecasting the Future 2026*.
