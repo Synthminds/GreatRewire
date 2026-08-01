@@ -159,8 +159,8 @@ into the initial condition. The ensemble therefore measures **incremental** rewi
 rather than cumulative rewiring since the first tariffs, and any reader comparing the two must hold
 that distinction. This is also the cleanest available explanation for why the
 descriptive gravity fit reports approximately 0.35x where the generator benchmark reports
-approximately 0.86x. The gravity figure is the total displacement from a 2017 anchor; the generator
-figure is the increment since 2020. Quote them in that order.
+approximately 0.86x. The gravity figure is the total displacement against each year's own
+cross-section; the generator figure is the increment since 2020. Quote them in that order.
 
 **Source.** `analysis/72_empirical_null.py`, `notes/PLACEBO-FINDING-2026-07-31.md`.
 

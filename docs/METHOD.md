@@ -176,9 +176,10 @@ re-prices trade. Both are natural extensions of this research, and neither is at
 
 One instrument boundary must be restated because an early draft of the paper crossed it.
 The descriptive gravity fit that reports China-US at approximately 0.35x its GDP-implied weight is
-a per-year ordinary-least-squares fit on directed flows anchored in 2017, and it reads the total
-displacement. It is **not** the CompleNet counterfactual, which reports approximately 0.86x on
-undirected pair weights initialized in 2020 and therefore reads only the increment since then. Lead
-with the gravity figure and present the ensemble as the refinement. Both readings are true, they
-measure against different baselines, and quoting them as one figure is the specific error
+a per-year ordinary-least-squares fit on directed flows, refit on each year's cross-section, and
+it reads the total displacement. It is **not** the CompleNet counterfactual, which reports
+approximately 0.86x on undirected pair weights initialized in 2020 and therefore reads only the
+increment since then. Lead with the gravity figure and present the ensemble as the refinement.
+Both readings are true, they measure against different baselines, and quoting them as one figure
+is the specific error
 `notes/PLACEBO-FINDING-2026-07-31.md` was raised to catch.

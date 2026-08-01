@@ -48,8 +48,8 @@ are ordinary-large rather than extreme.
 The printed sentence reads "China-US trades at 0.35x its GDP-implied weight, the 12th to 15th
 percentile of the ensemble." Those are **two separate analyses**:
 
-- **0.35x and 16.2x** come from the descriptive per-year gravity OLS on directed flows, fitted on
-  2017 (`analysis/21`; the actuals-metrics note says explicitly "NOT the published CompleNet
+- **0.35x and 16.2x** come from the descriptive per-year gravity OLS on directed flows, refit
+  each year (`analysis/21`; the actuals-metrics note says explicitly "NOT the published CompleNet
   model"). Legitimate, sourced, and unchanged.
 - **The 12th to 15th percentile** comes from the CompleNet counterfactual on undirected pair
   weights, **initialized on the 2020 network**. Its own median ratio for CHN-USA is **0.86x**,
@@ -80,3 +80,10 @@ has demonstrated the discipline the instrument itself failed to supply. The cost
 0.25pp of page budget.
 
 Slate impact: none. No forecast probability depends on the percentile figure.
+
+---
+
+*Correction, 2026-08-01: this note originally described the gravity OLS as "fitted
+on 2017". It is refit on each year's cross-section; `data/processed/actuals_metrics.csv`
+carries a separate fit per year, and the printed 0.35x and 16.2x are the 2024 residuals.
+The finding this note records is unaffected.*

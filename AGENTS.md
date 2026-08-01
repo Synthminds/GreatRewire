@@ -486,8 +486,8 @@ Most of the suppression therefore predates the ensemble's 2020 start line, since
 2020 bakes the 2018 to 2019 trade-war suppression into the initial condition. The ensemble measures
 incremental rewiring since 2020, not cumulative rewiring since the first tariffs.
 
-**Step 5. Lead with the wider baseline, then the refinement.** The descriptive gravity fit, on
-directed flows anchored in 2017, puts China-US at approximately 0.35x its GDP-implied weight. That is
+**Step 5. Lead with the wider baseline, then the refinement.** The descriptive gravity fit, a
+per-year OLS on directed flows, puts China-US at approximately 0.35x its GDP-implied weight. That is
 the total displacement. The ensemble reading of approximately 0.86x is the increment since 2020, and
 it is smaller because initializing on 2020 banks the earlier suppression into the starting condition.
 State the relationship in that order. Two numbers with an explicit relationship read as precision;
