@@ -136,7 +136,7 @@ brevity: `ok` (boolean) and `log_tail` (string, the final approximately 40 lines
 ```jsonc
 {
   "name": "validate_generator",
-  "description": "Run the ported CompleNet 2022 generator across 1996 to 2020 on real World Bank GDPs and compare yearly-average statistics against the published Table 1 and Table 2 anchors.",
+  "description": "Run the ported CompleNet 2022 generator across 1996 to 2020 under the paper's own bootstrapped log-normal GDP conditions, the same conditions its Table 2 was generated under, and compare yearly-average statistics against the published Table 1 and Table 2 anchors.",
   "inputs": {
     "iters": { "type": "integer", "default": 30, "minimum": 1, "description": "Independent model iterations averaged before comparison." },
     "seed":  { "type": "integer", "default": 42, "description": "Base seed. Iteration i uses seed + i." },

@@ -37,9 +37,11 @@ hold the paper.
 Findings are numbered in [`docs/FINDINGS.md`](docs/FINDINGS.md) with the conditions attached to
 each. Four carry the argument.
 
-**The port is faithful.** Driven by real World Bank GDPs across 1996 to 2020, the ported generator
-reproduces six headline statistics from the published tables within approximately 3.5%. That gives
-us a null we can run forward without having smuggled our own discretion into it.
+**The port is faithful.** Run across 1996 to 2020 under the published log-normal GDP conditions, the
+ported generator reproduces six headline statistics from the published tables within approximately
+3.5%. Those are the conditions the published Table 2 was itself generated under, which is why
+validating against it requires them. That gives us a null we can run forward without having smuggled
+our own discretion into it.
 
 **Targeted removal partitions value where random failure does not.** Removing the strongest 10% of
 countries from the actual 2024 network leaves approximately 8.4% of original trade weight in the
