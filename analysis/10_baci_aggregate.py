@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Our first research objective seeks to price two resource grabs on a single object, the world
+This script builds the bilateral trade panel that prices two resource grabs on a single object,
+the world
 trade network. To achieve this objective we must first construct that object, so this script
 ingests CEPII BACI HS17 V202601 end to end and aggregates roughly 11 million HS6 records per
 year into the bilateral panel every downstream script reads.

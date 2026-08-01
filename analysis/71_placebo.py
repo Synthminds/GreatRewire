@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Our third research objective seeks to establish whether the no-rewiring ensemble constitutes
+"""This script establishes whether the no-rewiring ensemble constitutes
 a calibrated null. To achieve this objective we push every untreated dyad through the same
 300-run ensemble and test the resulting percentiles for uniformity.
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Our third research objective seeks to establish whether the no-rewiring ensemble constitutes
+"""This script establishes whether the no-rewiring ensemble constitutes
 a calibrated null. To achieve this objective we first test the two published laws the ensemble
 rests on against data they never saw, then let a random forest attribute the 2017-2024 share
 shifts without imposing a functional form.

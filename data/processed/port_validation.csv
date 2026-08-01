@@ -1,5 +1,5 @@
-# source: models/wtw_model.py port, real WDI GDPs, 30 iterations, seed base 42
-# built: 2026-07-30
+# source: models/wtw_model.py port, bootstrapped log-normal GDPs per paper 4.2, 30 iterations, seed base 42
+# mode: bootstrap
 # script: models/validate_completnet.py
 # reference: paper Tables 1-2 anchors in notes/completnet-spec.md
 year,E,density,mu_deg,sd_deg,mu_sp,sd_sp,mu_cc,sd_cc,kcore

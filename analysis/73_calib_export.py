@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""Our third research objective seeks to establish whether the no-rewiring ensemble constitutes
-a calibrated null, and our fifth seeks to expose every instrument for inspection. To achieve
-both at once we export the calibration histograms here so a reader can watch the placebo fail
-in the interactive companion rather than take our word for it.
+"""This script exports the calibration record behind the placebo finding, so a reader can see
+the test fail rather than take our word for it.
 
 We re-run the printed 2020->2024 ensemble on the same seeds as 71 and 72, so the numbers
-match the paper exactly, then dump for the demo:
+match the paper exactly, then dump:
   - a 20-bin histogram of raw ensemble percentiles, the flat-if-calibrated test
   - a histogram of deviations r = log10(actual / ensemble median), the empirical null
   - a summary of the within-dyad model sd distribution

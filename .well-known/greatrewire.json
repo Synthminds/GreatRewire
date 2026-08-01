@@ -10,8 +10,7 @@
     "readme": "README.md",
     "method": "docs/METHOD.md",
     "data": "docs/DATA.md",
-    "findings": "docs/FINDINGS.md",
-    "companion": "demo/README.md"
+    "findings": "docs/FINDINGS.md"
   },
   "repository": "https://github.com/Synthminds/GreatRewire",
   "license": "MIT",
@@ -28,7 +27,15 @@
       "shipped": false,
       "reason": "Direct aggregation of CEPII BACI values. Not redistributable and above the size discipline of this repository.",
       "produced_by": "C1",
-      "gates": ["C2", "C4", "C5", "C6", "C7", "C8", "C9"]
+      "gates": [
+        "C2",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8",
+        "C9"
+      ]
     }
   },
   "capabilities": [
@@ -37,9 +44,18 @@
       "name": "build_trade_panel",
       "entry_point": "analysis/10_baci_aggregate.py",
       "command": "python3 analysis/10_baci_aggregate.py",
-      "reads": ["CEPII BACI HS17 V202601 archive, downloaded on demand"],
-      "writes": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/baci_2024_hs6.parquet", "data/processed/baci_country_codes.csv"],
-      "runtime_minutes": [20, 40],
+      "reads": [
+        "CEPII BACI HS17 V202601 archive, downloaded on demand"
+      ],
+      "writes": [
+        "data/processed/wtw_agg_2017_2024.csv",
+        "data/processed/baci_2024_hs6.parquet",
+        "data/processed/baci_country_codes.csv"
+      ],
+      "runtime_minutes": [
+        20,
+        40
+      ],
       "runtime_basis": "estimated",
       "network": true
     },
@@ -48,9 +64,18 @@
       "name": "build_sector_multigraph",
       "entry_point": "analysis/20_multigraph.py",
       "command": "python3 analysis/20_multigraph.py",
-      "reads": ["data/processed/baci_2024_hs6.parquet", "data/processed/baci_country_codes.csv", "data/processed/wtw_agg_2017_2024.csv"],
-      "writes": ["data/processed/multigraph/"],
-      "runtime_minutes": [3, 8],
+      "reads": [
+        "data/processed/baci_2024_hs6.parquet",
+        "data/processed/baci_country_codes.csv",
+        "data/processed/wtw_agg_2017_2024.csv"
+      ],
+      "writes": [
+        "data/processed/multigraph/"
+      ],
+      "runtime_minutes": [
+        3,
+        8
+      ],
       "runtime_basis": "estimated",
       "network": false
     },
@@ -59,9 +84,16 @@
       "name": "validate_generator",
       "entry_point": "models/validate_completnet.py",
       "command": "python3 models/validate_completnet.py --iters 30 --seed 42",
-      "reads": ["data/processed/wdi_gdp_1995_2024.csv"],
-      "writes": ["data/processed/port_validation.csv"],
-      "runtime_minutes": [5, 12],
+      "reads": [
+        "data/processed/wdi_gdp_1995_2024.csv"
+      ],
+      "writes": [
+        "data/processed/port_validation.csv"
+      ],
+      "runtime_minutes": [
+        5,
+        12
+      ],
       "runtime_basis": "estimated",
       "network": false
     },
@@ -70,9 +102,19 @@
       "name": "run_counterfactual_ensemble",
       "entry_point": "analysis/40_counterfactual.py",
       "command": "python3 analysis/40_counterfactual.py",
-      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv", "data/processed/imf_weo_ngdpd_2020_2028.csv"],
-      "writes": ["data/processed/counterfactual_ensemble.csv", "data/processed/counterfactual_corridors.csv"],
-      "runtime_minutes": [2, 4],
+      "reads": [
+        "data/processed/wtw_agg_2017_2024.csv",
+        "data/processed/wdi_gdp_1995_2024.csv",
+        "data/processed/imf_weo_ngdpd_2020_2028.csv"
+      ],
+      "writes": [
+        "data/processed/counterfactual_ensemble.csv",
+        "data/processed/counterfactual_corridors.csv"
+      ],
+      "runtime_minutes": [
+        2,
+        4
+      ],
       "runtime_basis": "measured",
       "network": false,
       "guardrail": "G2"
@@ -82,9 +124,16 @@
       "name": "run_attack_percolation",
       "entry_point": "analysis/41_attack.py",
       "command": "python3 analysis/41_attack.py",
-      "reads": ["data/processed/wtw_agg_2017_2024.csv"],
-      "writes": ["data/processed/attack_curves.csv"],
-      "runtime_minutes": [2, 5],
+      "reads": [
+        "data/processed/wtw_agg_2017_2024.csv"
+      ],
+      "writes": [
+        "data/processed/attack_curves.csv"
+      ],
+      "runtime_minutes": [
+        2,
+        5
+      ],
       "runtime_basis": "estimated",
       "network": false
     },
@@ -93,9 +142,17 @@
       "name": "run_rf_checks",
       "entry_point": "analysis/70_rf_rigor.py",
       "command": "python3 analysis/70_rf_rigor.py",
-      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv"],
-      "writes": ["figures/x4_validation.pdf"],
-      "runtime_minutes": [3, 8],
+      "reads": [
+        "data/processed/wtw_agg_2017_2024.csv",
+        "data/processed/wdi_gdp_1995_2024.csv"
+      ],
+      "writes": [
+        "figures/x4_validation.pdf"
+      ],
+      "runtime_minutes": [
+        3,
+        8
+      ],
       "runtime_basis": "estimated",
       "network": false
     },
@@ -104,9 +161,17 @@
       "name": "run_uniformity_placebo",
       "entry_point": "analysis/71_placebo.py",
       "command": "python3 analysis/71_placebo.py",
-      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv"],
-      "writes": ["data/processed/placebo_results.json"],
-      "runtime_minutes": [6, 10],
+      "reads": [
+        "data/processed/wtw_agg_2017_2024.csv",
+        "data/processed/wdi_gdp_1995_2024.csv"
+      ],
+      "writes": [
+        "data/processed/placebo_results.json"
+      ],
+      "runtime_minutes": [
+        6,
+        10
+      ],
       "runtime_basis": "measured",
       "network": false
     },
@@ -115,9 +180,17 @@
       "name": "run_empirical_null",
       "entry_point": "analysis/72_empirical_null.py",
       "command": "python3 analysis/72_empirical_null.py",
-      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv"],
-      "writes": ["data/processed/empirical_null.json"],
-      "runtime_minutes": [6, 10],
+      "reads": [
+        "data/processed/wtw_agg_2017_2024.csv",
+        "data/processed/wdi_gdp_1995_2024.csv"
+      ],
+      "writes": [
+        "data/processed/empirical_null.json"
+      ],
+      "runtime_minutes": [
+        6,
+        10
+      ],
       "runtime_basis": "estimated",
       "network": false
     },
@@ -126,21 +199,18 @@
       "name": "export_calibration",
       "entry_point": "analysis/73_calib_export.py",
       "command": "python3 analysis/73_calib_export.py",
-      "reads": ["data/processed/wtw_agg_2017_2024.csv", "data/processed/wdi_gdp_1995_2024.csv"],
-      "writes": ["data/processed/calib_export.json"],
-      "runtime_minutes": [3, 5],
+      "reads": [
+        "data/processed/wtw_agg_2017_2024.csv",
+        "data/processed/wdi_gdp_1995_2024.csv"
+      ],
+      "writes": [
+        "data/processed/calib_export.json"
+      ],
+      "runtime_minutes": [
+        3,
+        5
+      ],
       "runtime_basis": "estimated",
-      "network": false
-    },
-    {
-      "id": "C10",
-      "name": "rebuild_companion_data",
-      "entry_point": "demo/build_data.py",
-      "command": "python3 demo/build_data.py",
-      "reads": ["demo/data.js", "data/processed/calib_export.json", "data/processed/empirical_null.json"],
-      "writes": ["demo/data.js"],
-      "runtime_minutes": [0, 1],
-      "runtime_basis": "measured",
       "network": false
     },
     {
@@ -150,7 +220,10 @@
       "command": "python3 models/wtw_model.py",
       "reads": [],
       "writes": [],
-      "runtime_minutes": [0, 1],
+      "runtime_minutes": [
+        0,
+        1
+      ],
       "runtime_basis": "measured",
       "network": false
     }
@@ -160,20 +233,32 @@
       "analysis/40_counterfactual.py": 1000,
       "analysis/41_attack.py": 7000,
       "analysis/70_rf_rigor.py": 42,
-      "analysis/71_placebo.py": [1000, 5000],
-      "analysis/72_empirical_null.py": [1000, 5000],
+      "analysis/71_placebo.py": [
+        1000,
+        5000
+      ],
+      "analysis/72_empirical_null.py": [
+        1000,
+        5000
+      ],
       "analysis/73_calib_export.py": 1000,
       "models/validate_completnet.py": 42
     },
     "worker_count_affects_results": false,
     "default_max_workers": 8,
-    "byte_stable_outputs": ["data/processed/multigraph/", "demo/data.js"]
+    "byte_stable_outputs": [
+      "data/processed/multigraph/"
+    ]
   },
   "guardrails": [
     {
       "id": "G1",
       "rule": "Never redistribute raw CEPII BACI or the bilateral panel derived directly from it.",
-      "applies_to": ["data/processed/baci_2024_hs6.parquet", "data/processed/baci_country_codes.csv", "data/processed/wtw_agg_2017_2024.csv"],
+      "applies_to": [
+        "data/processed/baci_2024_hs6.parquet",
+        "data/processed/baci_country_codes.csv",
+        "data/processed/wtw_agg_2017_2024.csv"
+      ],
       "correct_response": "Return the cepii.fr download instruction plus capability C1, never the file."
     },
     {
@@ -194,12 +279,25 @@
     {
       "id": "G3",
       "rule": "Never alter a printed forecast probability without a dated written rationale recorded alongside it.",
-      "applies_to": ["demo/build_data.py", "notes/LOCKED-SLATE-v5.md"]
+      "applies_to": [
+        "notes/LOCKED-SLATE-v5.md"
+      ]
     },
     {
       "id": "G4",
       "rule": "Slate IDs are stable and must not be renumbered.",
-      "stable_ids": ["A1", "A2", "A3", "B4", "B5", "C6", "C7", "C8", "C9", "D10"],
+      "stable_ids": [
+        "A1",
+        "A2",
+        "A3",
+        "B4",
+        "B5",
+        "C6",
+        "C7",
+        "C8",
+        "C9",
+        "D10"
+      ],
       "correct_response": "Append a new ID to add a forecast; mark retired in place to remove one."
     }
   ],
@@ -217,8 +315,16 @@
     "locked": "2026-07-31",
     "record": "notes/LOCKED-SLATE-v5.md",
     "forecasts": {
-      "A1": 62, "A2": 38, "A3": 45, "B4": 45, "B5": 20,
-      "C6": 45, "C7": 75, "C8": 55, "C9": 42, "D10": 35
+      "A1": 62,
+      "A2": 38,
+      "A3": 45,
+      "B4": 45,
+      "B5": 20,
+      "C6": 45,
+      "C7": 75,
+      "C8": 55,
+      "C9": 42,
+      "D10": 35
     }
   }
 }

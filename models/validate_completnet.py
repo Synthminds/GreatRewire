@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Our second research objective seeks to hold fixed the machine that explained the last
+"""This script holds fixed the machine that explained the last
 twenty-five years of the world trade web. To achieve this objective we must first earn the right
 to call our port that machine, so this script validates it against the CompleNet 2022 paper's
 own reported statistics before any counterfactual is run.
@@ -56,6 +56,10 @@ def load_gdp_matrix(n_target=162):
                    "LTE", "LCN", "LAC", "TLA", "LDC", "LIC", "LMY", "LMC", "MEA", "MNA",
                    "TMN", "MIC", "NAC", "OED", "OSS", "PSS", "PST", "PRE", "SST", "SAS",
                    "TSA", "SSF", "SSA", "TSS", "UMC", "AFE", "AFW", "FCS"}
+    # WDI also ships aggregates under X-prefixed codes (XD high income, XM low income,
+    # XN lower-middle, XT upper-middle). XKX is Kosovo, a real economy, and stays.
+    agg_regions = agg_regions | {c for c in complete.index
+                                 if c.startswith("X") and c != "XKX"}
     complete = complete[~complete.index.isin(agg_regions)]
     complete = complete.sort_values(1996, ascending=False).head(n_target)
     return complete.index.to_numpy(), complete.to_numpy()  # (n,), (n, 25)
@@ -81,7 +85,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--iters", type=int, default=30)
     ap.add_argument("--seed", type=int, default=42)
-    ap.add_argument("--mode", choices=["real", "bootstrap"], default="real")
+    # bootstrap is the validated path: Table 2 was itself generated under the paper's
+    # log-normal GDP conditions, so comparing against it requires the same conditions.
+    # real is a diagnostic that drives the port with WDI GDPs; it is not the validation
+    # and is not expected to clear the Table 2 contract.
+    ap.add_argument("--mode", choices=["real", "bootstrap"], default="bootstrap")
     args = ap.parse_args()
 
     if args.mode == "real":
@@ -112,9 +120,12 @@ def main():
 
     out = ROOT / "data/processed/port_validation.csv"
     with open(out, "w") as f:
-        f.write("# source: models/wtw_model.py port, real WDI GDPs, "
+        gdp_desc = ("bootstrapped log-normal GDPs per paper 4.2"
+                    if args.mode == "bootstrap" else "real WDI GDPs")
+        f.write(f"# source: models/wtw_model.py port, {gdp_desc}, "
                 f"{args.iters} iterations, seed base {args.seed}\n"
-                "# built: 2026-07-30\n# script: models/validate_completnet.py\n"
+                f"# mode: {args.mode}\n"
+                "# script: models/validate_completnet.py\n"
                 "# reference: paper Tables 1-2 anchors in notes/completnet-spec.md\n")
         df.to_csv(f, index=False)
 

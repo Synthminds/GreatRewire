@@ -1,13 +1,14 @@
 # The Great Rewiring
 
+[![verify](https://github.com/Synthminds/GreatRewire/actions/workflows/verify.yml/badge.svg)](https://github.com/Synthminds/GreatRewire/actions/workflows/verify.yml)
+
 Two resource grabs, one network: pricing modern mercantilism and artificial intelligence on the
 world trade web. Reproduction package for a submission to Bridgewater and Global Citizen,
 *Forecasting the Future 2026*.
 
 > ### Agents start here: **[AGENTS.md](AGENTS.md)**
-> The capability table, the proposed MCP tool surface, the data contracts, and the four guardrails
-> live in that file. A machine-readable mirror sits at
-> [`.well-known/greatrewire.json`](.well-known/greatrewire.json).
+> The capability table, the data contracts, and the four guardrails live in that file. A
+> machine-readable mirror sits at [`.well-known/greatrewire.json`](.well-known/greatrewire.json).
 
 Licence: MIT, code only. See the data note below.
 
@@ -15,58 +16,68 @@ Licence: MIT, code only. See the data note below.
 
 ## What This Is
 
-Our objective is to treat the world trade network as one object and to price two simultaneous grabs
-against it. The first is mercantilist, contesting chokepoints in semiconductors, critical minerals,
+This package treats the world trade network as one object and prices two simultaneous grabs against
+it. The first is mercantilist, contesting chokepoints in semiconductors, critical minerals,
 batteries, pharmaceutical ingredients, and aerospace. The second is computational, contesting power,
-capital, and silicon. However, the two grabs land on one object rather than two. The instrument
-shared across both is a synthetic generator of the world trade web, published at CompleNet 2022,
-which we port to Python, validate against its own reported statistics, and then run forward as a
-null for a world that never rewired.
+capital, and silicon. The two grabs land on one object rather than two.
 
-Lastly, the repository holds that generator, the experiments run on it, the audits that broke one of
-them, the correction that followed, and the ten binary forecasts the whole apparatus supports. It
-does not hold the paper.
+The instrument shared across both is a synthetic generator of the world trade web, published at
+CompleNet 2022. Feed it nothing but each country's GDP and it reproduces who trades with whom, how
+densely, and through which hubs. We port it to Python, validate it against its own reported
+statistics, then run it forward as a null for a world that never rewired.
+
+The repository holds that generator, the experiments run on it, the audits that broke one of them,
+the correction that followed, and the ten binary forecasts the whole apparatus supports. It does not
+hold the paper.
 
 ---
 
 ## What It Found
 
-Our findings are numbered in [`docs/FINDINGS.md`](docs/FINDINGS.md) with the conditions attached to
+Findings are numbered in [`docs/FINDINGS.md`](docs/FINDINGS.md) with the conditions attached to
 each. Four carry the argument.
 
-**The port is faithful.** Driven by real World Bank GDPs across 1996 to 2020, the ported generator
-reproduces six headline statistics from the published tables within approximately 3.5%. This
-translates to a null we can run forward without having smuggled our own discretion into it.
+**The port is faithful.** Run across 1996 to 2020 under the published log-normal GDP conditions, the
+ported generator reproduces six headline statistics from the published tables within approximately
+3.5%. Those are the conditions the published Table 2 was itself generated under, which is why
+validating against it requires them. That gives us a null we can run forward without having smuggled
+our own discretion into it.
 
 **Targeted removal partitions value where random failure does not.** Removing the strongest 10% of
-nodes from the actual 2024 network leaves approximately 8.4% of original trade weight in the
+countries from the actual 2024 network leaves approximately 8.4% of original trade weight in the
 surviving connected component, against approximately 83.7% under random failure of the same
-magnitude. Simply put, the topology holds and the value structure partitions, which is a roughly
-tenfold gap between an adversary who chooses and an accident that does not.
+magnitude. The topology holds and the value structure partitions. That is a roughly tenfold gap
+between an adversary who chooses and an accident that does not.
 
-**The counterfactual bands failed their own placebo.** Pushing roughly 2,653 untreated dyads through
-the 300-run ensemble should return approximately uniform percentiles. However, it returns
-approximately 28.3% below the 5th percentile and approximately 27.5% above the 95th, at a KS
-distance to uniform of approximately 0.239. The generator's within-dyad dispersion of approximately
-0.104 dex sits against a real cross-section of approximately 0.421 dex, so the bands run
-approximately 4.1x too tight, and roughly 10.7x too tight in the 2017 to 2019 pre-period.
+**The counterfactual bands failed their own placebo.** Pushing roughly 2,653 untreated country pairs
+through the 300-run ensemble should return approximately uniform percentiles. It returns
+approximately 28.3% below the 5th percentile and approximately 27.5% above the 95th, at a
+Kolmogorov-Smirnov distance to uniform of approximately 0.239. The generator's within-pair
+dispersion of approximately 0.104 dex sits against a real cross-section of approximately 0.421 dex,
+where one dex is a factor of ten. The bands run approximately 4.1 times too tight, and roughly 10.7
+times too tight in the 2017 to 2019 pre-period.
 
 **Corrected, the direction survives and the magnitude does not.** Rebuilding the null from the
-cross-section of deviations, following Efron, puts the China-US corridor at approximately 0.86x its
-benchmark median and roughly the 34th percentile of all comparable dyads. The Vietnam-US corridor
-runs the other way, at approximately 1.26x and roughly the 75th. Suppression and re-routing are both
-real. However, both are ordinary-large rather than extreme.
+cross-section of deviations, following Efron, puts the China-US corridor at approximately 0.86 times
+its benchmark median and roughly the 34th percentile of all comparable country pairs. The Vietnam-US
+corridor runs the other way, at approximately 1.26 times and roughly the 75th. Suppression and
+re-routing are both real, and both are ordinary-large rather than extreme.
 
-However, the last two findings are the point of the package rather than a blemish on it. A
-forecaster who placebo-tests his own null, finds it over-confident by a factor of four, and prints
-the correction has produced a more useful instrument than one who never looked.
+The last two findings are the point of the package rather than a blemish on it. A forecaster who
+placebo-tests his own null, finds it over-confident by a factor of four, and prints the correction
+has produced a more useful instrument than one who never looked.
 
 ---
 
 ## The Ten Forecasts
 
 The slate is locked at v5.0 and recorded in [`notes/LOCKED-SLATE-v5.md`](notes/LOCKED-SLATE-v5.md).
-Of note, IDs A1 through D10 are stable and will not be renumbered.
+IDs A1 through D10 are stable and will not be renumbered.
+
+The four groups are four speeds of response to the same shock. Governments move first, deleting and
+re-pricing trade routes within quarters (A). Trade flows re-route behind them over quarters to years
+(B). The AI buildout answers on construction time, because transformers, transmission lines, and
+generation take years to build (C). Labor moves last (D).
 
 | ID | P | Claim (short) |
 |---|---|---|
@@ -83,23 +94,23 @@ Of note, IDs A1 through D10 are stable and will not be renumbered.
 
 *Source: Author (2026).*
 
-Three sit at or above 55 and seven below even, with a mean of 46.2 across a range of 20 to 75.
-Moreover, the modal-outcome Brier score of 0.150 runs 40.0% better than a coin flip, and the
-companion computes it live against whatever resolution a reader supplies.
+Three sit at or above 55 and seven below even, with a mean of 46.2 across a range of 20 to 75. The
+modal-outcome Brier score of 0.150 runs 40.0% better than a coin flip.
 
 ---
 
 ## How to Rerun
 
-Python 3.11 with the packages in [`requirements.txt`](requirements.txt). Since every script fixes
-its seeds, reruns are deterministic.
+Python 3.11 with the packages in [`requirements.txt`](requirements.txt). Every script fixes its
+seeds, so reruns are deterministic. For exact reproduction of the printed figures,
+[`requirements.lock`](requirements.lock) pins the environment the results were verified in.
 
 ```bash
 pip install -r requirements.txt
 
 # 0. Confirm the generator, which needs no trade data at all
-python3 models/wtw_model.py                      # equation self-test, under 5 seconds
-python3 models/validate_completnet.py            # port validation against the published tables
+python3 models/wtw_model.py                      # equation self-test, under 5 seconds -> ALL PASS
+python3 models/validate_completnet.py            # port validation -> VERDICT: PASS (6/6)
 
 # 1. Build the trade panel. This gates almost everything below.
 python3 analysis/10_baci_aggregate.py            # downloads CEPII BACI, see the data note
@@ -113,32 +124,33 @@ python3 analysis/41_attack.py                    # attack percolation
 python3 analysis/70_rf_rigor.py                  # random-forest out-of-sample checks
 python3 analysis/71_placebo.py                   # uniformity placebo, 6 to 10 minutes
 python3 analysis/72_empirical_null.py            # the Efron correction, 6 to 10 minutes
-python3 analysis/73_calib_export.py              # calibration histograms for the companion
-
-# 4. The companion
-python3 demo/build_data.py
-sed -e 's|{{DATAURL}}|data.js|' demo/index.template.html > demo/index.html
-python3 -m http.server -d demo 8000
+python3 analysis/73_calib_export.py              # calibration export
 ```
 
-Of note, the ordering within step 3 is not cosmetic. Reading `72_empirical_null.py` output without
-having seen `71_placebo.py` fail first invites exactly the misreading that guardrail G2 in
+`validate_completnet.py` defaults to the paper's own log-normal GDP conditions, which is the mode
+Table 2 was generated under and therefore the only mode that can validate against it. It prints
+`VERDICT: PASS (6/6)` and regenerates `data/processed/port_validation.csv` with data rows identical
+to the committed copy. The `--mode real` flag drives the same port with actual World Bank GDPs; that
+path is a diagnostic and does not clear the Table 2 contract.
+
+The ordering within step 3 is not cosmetic. Reading `72_empirical_null.py` output without having
+seen `71_placebo.py` fail first invites exactly the misreading that guardrail G2 in
 [`AGENTS.md`](AGENTS.md) forbids.
 
 ---
 
 ## What Is Deliberately Absent
 
-Our objective in trimming this repository was to ship what a reader or an agent needs to understand
-and rerun the work, and nothing that merely documents how it was made. Six categories are absent by
-decision rather than by oversight.
+This repository ships what a reader or an agent needs to understand and rerun the work, and nothing
+that merely documents how it was made. Six categories are absent by decision rather than by
+oversight.
 
 **Raw CEPII BACI HS17 V202601.** The licence does not permit redistribution. Download it from
 cepii.fr and `analysis/10_baci_aggregate.py` regenerates everything downstream.
 
 **The bilateral trade panel.** `wtw_agg_2017_2024.csv` is a direct aggregation of BACI values at
 roughly 5.6 MB, so it falls under the same restriction and under the size discipline this repository
-holds itself to. However, it rebuilds in one command.
+holds itself to. It rebuilds in one command.
 
 **The `0x` data-pull scripts.** They require API keys and network access to eight separate
 providers, so a third party cannot reproduce them as written. Their outputs ship instead, each
@@ -155,22 +167,16 @@ them adds nothing a reader needs.
 and superseded slate versions live in the private repository. The two that a reader needs to judge
 the work, being the locked slate and the placebo finding, ship in [`notes/`](notes).
 
-Conversely, one thing is present that a strict reading would cut. `demo/data.js` ships because
-`demo/build_data.py` reads it to carry forward four precomputed blocks, so removing it would break
-the companion rebuild rather than slim the package. Refactoring that dependency out is a logical
-extension of this work.
-
 ---
 
 ## Documentation
 
 | File | Contents |
 |---|---|
-| [`AGENTS.md`](AGENTS.md) | Capability table, MCP tool surface, determinism notes, data contracts, guardrails, worked example |
+| [`AGENTS.md`](AGENTS.md) | Capability table, determinism notes, data contracts, guardrails, worked example |
 | [`docs/METHOD.md`](docs/METHOD.md) | The generator, the null, the calibration failure, and its correction |
 | [`docs/DATA.md`](docs/DATA.md) | Every source, its vintage, its licence, and what is not redistributed |
 | [`docs/FINDINGS.md`](docs/FINDINGS.md) | The numbered results with the conditions under which each holds |
-| [`demo/README.md`](demo/README.md) | Building and deploying the interactive companion |
 
 *Source: Author (2026).*
 
@@ -180,25 +186,25 @@ extension of this work.
 
 ### Declaration of AI use
 
-During the preparation of this work we used ChatGPT, Claude, Perplexity, and GPAI. We
-used them to expand the option space, generating alternative framings and counterarguments for us
-to evaluate. We used them to surface candidate patterns across studies and datasets, each of which
-we then checked against the sources ourselves. We also used them to challenge our assumptions and
-to hunt for gaps and bias in our own reasoning, and to improve readability. They assisted in
-writing and debugging the Python that builds the panel, runs the counterfactual ensembles, and
-produces the exhibits. However, we verified every output, result, and line of code against the
-underlying data and against established method before it entered this paper. Of note, no
-probability, threshold, resolution criterion, or conclusion here was set by a model. We reviewed
-and edited all content, we take full responsibility for it, and the ideas put forward are our own.
+During the preparation of this work we used ChatGPT, Claude, Perplexity, and GPAI. We used them to
+expand the option space, generating alternative framings and counterarguments for us to evaluate. We
+used them to surface candidate patterns across studies and datasets, each of which we then checked
+against the sources ourselves. We also used them to challenge our assumptions and to hunt for gaps
+and bias in our own reasoning, and to improve readability. They assisted in writing and debugging the
+Python that builds the panel, runs the counterfactual ensembles, and produces the exhibits. We
+verified every output, result, and line of code against the underlying data and against established
+method before it entered this paper. No probability, threshold, resolution criterion, or conclusion
+here was set by a model. We reviewed and edited all content, we take full responsibility for it, and
+the ideas put forward are our own.
 
 This declaration appears verbatim in the paper's front matter.
 
 ### What that means for this repository
 
-All models were designed and run by the author. Moreover, all probabilities were set by the author
-in a verification pass held separate from model construction. The private repository carries the
-full decision log, including the two places where an early draft overclaimed and was corrected
-before print.
+All models were designed and run by the author. All probabilities were set by the author in a
+verification pass held separate from model construction. The private repository carries the full
+decision log, including the two places where an early draft overclaimed and was corrected before
+print.
 
 ## Citation
 
