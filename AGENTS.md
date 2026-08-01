@@ -36,9 +36,9 @@ Citizen, *Forecasting the Future 2026*. It is not the paper. It is the machinery
 | `analysis/` | The numbered pipeline. Lower numbers build data, the 4x band runs experiments, the 7x band audits them. |
 | `data/processed/` | Derived tables and JSON results. Every file carries a commented provenance header. |
 | `data/processed/multigraph/` | Per-sector directed edge lists, chokepoint tables, and concentration measures for five strategic layers. |
-| `figures/` | The four exhibit PDFs referenced by the paper. |
+| `figures/` | The four exhibit PDFs. File names carry the build-time numbering, which the paper reorders: `x2_divergence` is the paper's Exhibit X1, `x1_multigraph` is X2, `x4_validation` is X3, `x3_envelope` is X4. |
 | `docs/` | Method, data provenance, and the numbered findings, in prose. |
-| `notes/` | The locked forecast slate and the placebo finding, preserved as dated records. |
+| `notes/` | The locked forecast slate, the placebo finding, and the dated G3 rationale for the B5 overlay, preserved as dated records. |
 | `.well-known/` | `greatrewire.json`, a machine-readable mirror of the capability table and guardrails below. |
 
 *Source: Author (2026).*
@@ -75,15 +75,21 @@ The table carries one hard precondition that governs almost all of it. **C1 gate
 C5, C6, C7, C8, and C9**, because `wtw_agg_2017_2024.csv` is the panel every one of them reads and
 this repository does not ship it. Section 6 of `docs/DATA.md` states why. Therefore an agent that
 attempts C4 without first completing C1 will fail on a missing-file error rather than on anything
-subtle. C3, C9, and C11 run against files that do ship, so an agent with no BACI access can still
-validate the port, export the calibration record, and confirm the generator's equations.
+subtle. C3 and C11 run against files that do ship, so an agent with no BACI access can still
+validate the port and confirm the generator's equations.
 
 ---
 
 ## 4. Suggested MCP Tool Surface
 
-The surface below maps one to one onto the capability table, so that turning this repository into a Model Context Protocol server requires
-scheduling and error handling rather than design. Types below follow JSON Schema conventions. Of
+The surface below covers the eight long-running capabilities, so that turning this repository into
+a Model Context Protocol server requires scheduling and error handling rather than design. C6 and
+C11 carry no tool spec by decision, the first because its output is a figure and printed statistics
+rather than a structured payload, the second because it takes no inputs and returns a pass or a
+fail. Capability C10 and tool 4.9 were the retired interactive companion; the identifiers are left
+vacant rather than reflowed, on the same discipline guardrail G4 applies to the slate.
+
+Types below follow JSON Schema conventions. Of
 note, all paths returned are repository-relative POSIX paths, all durations are seconds, and all
 monetary values are current US dollars unless a field name says otherwise.
 
@@ -144,7 +150,7 @@ brevity: `ok` (boolean) and `log_tail` (string, the final approximately 40 lines
   },
   "returns": {
     "verdict":       { "type": "string", "enum": ["PASS","FAIL"], "description": "PASS requires the six headline statistics within approximately 5% of the Table 2 averages and k-core within plus or minus 10." },
-    "max_deviation_pct": { "type": "number", "description": "Largest absolute percentage deviation across the compared statistics. The shipped run, in the default bootstrap mode, returns approximately 3.5 and a PASS." },
+    "max_deviation_pct": { "type": "number", "description": "Largest absolute percentage deviation across the compared statistics. The shipped run, in the default bootstrap mode, returns approximately 2.9 and a PASS." },
     "per_stat":      { "type": "array", "items": { "type": "object", "properties": { "stat": {"type":"string"}, "port": {"type":"number"}, "published": {"type":"number"}, "deviation_pct": {"type":"number"} } } },
     "csv_path":      { "type": "string", "description": "Path to port_validation.csv, one row per year 1996 through 2020." },
     "duration_s":    { "type": "number" }
@@ -213,7 +219,7 @@ brevity: `ok` (boolean) and `log_tail` (string, the final approximately 40 lines
 ```jsonc
 {
   "name": "run_uniformity_placebo",
-  "description": "Test whether the no-rewiring ensemble is a calibrated null by pushing every comparable untreated country pair through it and testing the resulting percentiles for uniformity. Runs two 300-member ensembles.",
+  "description": "Test whether the no-rewiring ensemble is a calibrated null by pushing every comparable country pair through it and testing the resulting percentiles for uniformity. Runs two 300-member ensembles.",
   "inputs": {
     "windows":     { "type": "array", "items": { "type": "string", "enum": ["2020_2024","2017_2019"] }, "default": "both", "description": "2020_2024 is the printed window; 2017_2019 is the pre-COVID backtest." },
     "n_runs":      { "type": "integer", "default": 300 },
@@ -335,8 +341,9 @@ carries a stream-compatibility guarantee. We measured it rather than trusting it
 `random`, and `choice` streams this port depends on are byte-identical across NumPy 1.26.4 through
 2.4.6, the full range `requirements.txt` admits, and the GDP matrix is identical across pandas 2.1.4
 through 2.3.3. A change to `scikit-learn`'s tree-building internals would still move
-`70_rf_rigor.py` output without any seed changing, which is why its ceiling is pinned. Pinning the
-full environment rather than the top-level packages remains the next step here.
+`70_rf_rigor.py` output without any seed changing, which is why its ceiling is pinned. The exact environment those
+measurements were made in is pinned in `requirements.lock`, which is what a reader should install
+for byte-exact reproduction; `requirements.txt` carries the human-readable ranges.
 
 ---
 
@@ -361,7 +368,7 @@ skipped, and every reader in the repository passes `comment="#"` for that reason
 |---|---|---|---|
 | `corridor` | object | ISO3 pair | Alphabetically ordered, undirected, so `CHN-USA` carries both directions |
 | `year` | int64 | calendar year | 2021 through 2028 |
-| `kind` | object | categorical | `cf` for counterfactual ensemble, `act` for actual |
+| `kind` | object | categorical | `cf` for the counterfactual ensemble, `actual` for the observed weight, `pctile_of_actual_in_cf` for the raw ensemble percentile carried in `p50`. That third value is not a p-value; see guardrail G2 |
 | `p50`, `p5`, `p95` | float64 | model units, kappa scale | Not USD. See guardrail G2 before differencing against real values |
 
 ### 6.3 `data/processed/attack_curves.csv`
@@ -424,7 +431,7 @@ bilateral panel. When a caller asks for the panel, the correct response is the d
 plus capability C1, never the file.
 
 **G2. Never present a raw ensemble percentile as a p-value.** The counterfactual bands failed their
-own uniformity placebo. Approximately 28.3% of roughly 2,653 untreated country pairs land below the
+own uniformity placebo. Approximately 28.3% of roughly 2,653 comparable country pairs land below the
 ensemble's 5th percentile and approximately 27.5% above its 95th, against 5% expected at each tail,
 with a KS distance to uniform of approximately 0.239. The generator's within-pair dispersion is
 approximately 0.104 dex against a real cross-section of approximately 0.421 dex, so the bands run
@@ -439,7 +446,8 @@ and at least one was set against the model's own posterior on stated judgment. A
 agent may compute an updated probability, present it as a proposal, and show its drivers.
 Editing the value in `notes/LOCKED-SLATE-v5.md` or in any downstream
 surface without a dated written rationale alongside it breaks the audit chain that makes the slate
-scoreable.
+scoreable. The worked instance is `notes/B5-OVERLAY-2026-08-01.md`, the dated rationale for B5
+printed at 20 against a model draft of 12.
 
 **G4. The slate IDs are stable and must not be renumbered.** A1, A2, A3, B4, B5, C6, C7, C8, C9, and
 D10 are frozen at v5.0. Exactly one renumbering has ever been performed, documented in
@@ -473,7 +481,7 @@ null is therefore not calibrated, and no raw percentile from the ensemble is a p
 call `run_empirical_null`. The printed window returns approximately 4.1x, being a cross-sectional
 deviation of approximately 0.421 dex against a median within-pair model dispersion of approximately
 0.104 dex. A raw percentile of 12 is therefore ordinary rather than extreme, since roughly a quarter of all
-untreated country pairs sit below 5.
+comparable country pairs sit below 5.
 
 **Step 3. Read the corrected figure, not the raw one.** From this same file, the `CHN-USA` entry
 returns `ratio_vs_median` of approximately 0.86 and `empirical_pctile` of approximately 0.344. The

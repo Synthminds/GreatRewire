@@ -2,7 +2,7 @@
   "schema": "greatrewire-agent-manifest/1",
   "name": "The Great Rewiring",
   "version": "1.0.0",
-  "updated": "2026-07-31",
+  "updated": "2026-08-01",
   "summary": "Reproduction package that prices modern mercantilism and artificial intelligence on the world trade network, using a validated port of the CompleNet 2022 synthetic world-trade-web generator as a no-rewiring null.",
   "entry_point": "AGENTS.md",
   "documentation": {
@@ -280,7 +280,8 @@
       "id": "G3",
       "rule": "Never alter a printed forecast probability without a dated written rationale recorded alongside it.",
       "applies_to": [
-        "notes/LOCKED-SLATE-v5.md"
+        "notes/LOCKED-SLATE-v5.md",
+        "notes/B5-OVERLAY-2026-08-01.md"
       ]
     },
     {
@@ -302,7 +303,7 @@
     }
   ],
   "headline_results": {
-    "port_validation_max_deviation_pct": 3.5,
+    "port_validation_max_deviation_pct": 2.9,
     "attack_10pct_targeted_surviving_weight_share": 0.084,
     "attack_10pct_random_surviving_weight_share": 0.837,
     "chn_usa_ratio_vs_benchmark_median": 0.86,

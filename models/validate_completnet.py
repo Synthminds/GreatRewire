@@ -4,15 +4,17 @@ twenty-five years of the world trade web. To achieve this objective we must firs
 to call our port that machine, so this script validates it against the CompleNet 2022 paper's
 own reported statistics before any counterfactual is run.
 
-We run the model across 1996-2020 driven by REAL World Bank GDPs, which tests the paper's
-headline claim that GDP-driven synthetic networks track the real WTW, across 30 iterations. We
+We run the model across 1996-2020 under the paper's own bootstrapped log-normal GDP conditions,
+the conditions its Table 2 was itself generated under, across 30 iterations. The --mode real path
+drives the same port with actual World Bank GDPs; it is a diagnostic and does not clear the
+Table 2 contract. We
 then compare yearly-average statistics against Table 2 (synthetic, 30-iteration mean) and Table 1
 (real WTW) anchors transcribed from the paper.
 
-PASS contract (notes/completnet-spec.md): within approximately 5% of the Table 2 averages on
+PASS contract: within approximately 5% of the Table 2 averages on
 E / density / mu_deg / mu_sp / mu_cc, and k-core within +/-10.
 
-Usage: python3 validate_completnet.py [--iters 30] [--seed 42]
+Usage: python3 validate_completnet.py [--iters 30] [--seed 42] [--mode bootstrap|real]
 Writes: data/processed/port_validation.csv, then prints the comparison table.
 """
 from __future__ import annotations
@@ -126,7 +128,7 @@ def main():
                 f"{args.iters} iterations, seed base {args.seed}\n"
                 f"# mode: {args.mode}\n"
                 "# script: models/validate_completnet.py\n"
-                "# reference: paper Tables 1-2 anchors in notes/completnet-spec.md\n")
+                "# reference: Kennedy et al., CompleNet 2022, Tables 1-2, transcribed above\n")
         df.to_csv(f, index=False)
 
     ours_avg = df[keys].mean()

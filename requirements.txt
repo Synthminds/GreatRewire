@@ -2,8 +2,10 @@
 # Developed and run on CPython 3.11. Lower bounds are the versions the analysis was
 # validated against; upper bounds guard the next major release rather than a known break.
 #
-# Determinism note: the NumPy Generator bit stream is stable across releases by policy, so
-# seeded results reproduce within these ranges. A scikit-learn major release could still move
+# Determinism note: NumPy does not guarantee the Generator bit stream across feature releases
+# (NEP 19), so we measured it rather than trusting it: the gamma, random, and choice streams this
+# port depends on are byte-identical across NumPy 1.26.4 through 2.4.6. Seeded results reproduce
+# within these ranges. A scikit-learn major release could still move
 # 70_rf_rigor.py output without any seed changing, which is why its ceiling is pinned.
 
 numpy>=1.26,<3.0

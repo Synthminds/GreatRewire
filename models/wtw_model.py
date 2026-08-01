@@ -7,7 +7,7 @@ rewired. To achieve this objective we port that machine to Python here, reproduc
 Kennedy, Wish, Smith, Sherrell, Shields & Gera, "Building a Reliable,
 Dynamic and Temporal Synthetic Model of the World Trade Web" (CompleNet 2022).
 We document parameter provenance and the two typo resolutions in
-notes/completnet-spec.md.
+Kennedy et al., CompleNet 2022, Equations 2 through 8.
 
 Conventions:
 - We represent the undirected weighted network as a symmetric N x N numpy array (0 = no edge).

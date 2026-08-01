@@ -5,8 +5,8 @@ abstract: >-
   Reproduction package for a study that treats the world trade network as a single object and
   prices two simultaneous resource grabs against it. It ports the CompleNet 2022 synthetic
   world-trade-web generator to Python, validates the port against the published statistics to
-  within approximately 3.5%, runs it forward as a no-rewiring null, tests that null with a
-  uniformity placebo across roughly 2,653 untreated dyads, finds it approximately 4.1 times
+  within approximately 2.9%, runs it forward as a no-rewiring null, tests that null with a
+  uniformity placebo across roughly 2,653 comparable dyads, finds it approximately 4.1 times
   over-confident, and replaces it with an Efron empirical null. Also contains an attack
   percolation of the 2024 network and ten locked binary forecasts.
 type: software
