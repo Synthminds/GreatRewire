@@ -102,7 +102,8 @@ modal-outcome Brier score of 0.150 runs 40.0% better than a coin flip.
 ## How to Rerun
 
 Python 3.11 with the packages in [`requirements.txt`](requirements.txt). Every script fixes its
-seeds, so reruns are deterministic.
+seeds, so reruns are deterministic. For exact reproduction of the printed figures,
+[`requirements.lock`](requirements.lock) pins the environment the results were verified in.
 
 ```bash
 pip install -r requirements.txt

@@ -18,6 +18,10 @@ Supersedes LOCKED-SLATE-v4.md (+v4.1). Printed in `paper/forecasts.tex`.
 **Balance:** three at or above 55 (A1, C7, C8); seven below even. Mean 46.2, range 20–75.
 Modal-outcome Brier 0.150, or approximately 40.0% better than a coin flip, computable live on the companion.
 
+> *[Editorial note added 2026-08-01: the interactive companion referenced above was retired before
+> release. This document is preserved as the dated record it was, so the line stands as written. The
+> Brier score is recomputable from the ten printed probabilities against any resolution set.]*
+
 ## What changed from v4.1, and why
 
 The contest requires a **minimum of 10** binary forecasts (2026 event page), not exactly 10 ; 
