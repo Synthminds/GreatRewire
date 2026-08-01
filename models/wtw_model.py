@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Our second research objective seeks to hold fixed the machine that explained the last
+"""This script holds fixed the machine that explained the last
 twenty-five years of the world trade web and run it forward as a null for a world that never
 rewired. To achieve this objective we port that machine to Python here, reproducing Equations
 2-8 exactly as published so the null carries no discretion of ours.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Our first research objective seeks to price the mercantilist grab for chokepoints on the world
+This script prices the mercantilist grab for chokepoints on the world
 trade network. To achieve this objective we build five strategic-sector layers from BACI 2024
 HS6 flows, place them alongside the all-products 2024 aggregate graph, and emit the chokepoint
 and concentration tables that name the chokepoints rather than gesture at them.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Our second research objective seeks to read the present as deviations from a world that never
+"""This script reads the present as deviations from a world that never
 rewired. To achieve this objective we initialize the ensemble on the ACTUAL 2020 network and
 evolve it forward across 2021-2028 under the validated CompleNet port on actual GDPs. The
 divergence between that ensemble and the actual 2021-2024 networks is the rewiring, quantified.

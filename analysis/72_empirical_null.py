@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Our third research objective seeks to establish whether the no-rewiring ensemble constitutes
+"""This script establishes whether the no-rewiring ensemble constitutes
 a calibrated null, and 71_placebo.py established that it does not. To achieve the objective
 anyway we rebuild the null here from the cross-section of deviations rather than from the
 model's own bands.

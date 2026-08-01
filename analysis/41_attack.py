@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Our fourth research objective seeks to establish how much trade value strength-targeted
+"""This script establishes how much trade value strength-targeted
 removal strands against what random failure costs. To achieve this objective we percolate the
 actual 2024 network under three removal strategies and read the gap between them as the
 fragility measure. The topology holds and then the value structure partitions, which is the

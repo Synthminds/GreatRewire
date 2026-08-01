@@ -35,10 +35,6 @@ data/processed/wtw_agg_*.csv
 *.zip
 
 # --- Build artifacts ---
-demo/index.html
-demo/_build/
-demo/data.min.js
-demo/deploy_*
 /tmp/
 
 # --- LaTeX ---

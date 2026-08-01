@@ -7,19 +7,19 @@ redistribute.
 
 ## 1. Reading the Provenance Headers
 
-Our objective in this section is to make every shipped file self-describing, so that a reader who
-opens one in isolation can establish where it came from without consulting this document.
+Every shipped file is self-describing, so a reader who opens one in isolation can establish where it
+came from without consulting this document.
 
 Therefore every CSV under `data/processed/` opens with one or more comment lines beginning with `#`.
-Those lines name the upstream source, the pull date, the producing script, and the units. Of note,
-the units line is not decorative. Trade weights arrive in thousands of US dollars, capital
+Those lines name the upstream source, the pull date, the producing script, and the units.
+The units line is not decorative. Trade weights arrive in thousands of US dollars, capital
 expenditure in dollars, GDP in dollars for World Bank series and in billions for IMF series,
 generation in terawatt-hours, and unemployment gaps in percentage points. Mixing them silently is
 the most likely way to produce a wrong number from correct files. Every reader in the repository
 passes `comment="#"` for this reason.
 
 The licence characterisations below are our reading of each provider's published terms as of
-July 2026. However, they are not legal advice, and a party intending to redistribute any of this
+July 2026. They are not legal advice, and a party intending to redistribute any of this
 material should verify the current terms at the source before doing so.
 
 ---
@@ -38,10 +38,10 @@ material should verify the current terms at the source before doing so.
 
 *Source: Author (2026).*
 
-Of note, BACI ships Taiwan under code 490, "Other Asia, nes", with no usable ISO3 label.
+BACI ships Taiwan under code 490, "Other Asia, nes", with no usable ISO3 label.
 `analysis/10_baci_aggregate.py` therefore emits an `iso3_recode` column mapping 490 to TWN, and
-every downstream script reads the recoded column. This translates to Taiwan appearing as a
-first-class node in the semiconductor layer, which the analysis would otherwise be unable to
+every downstream script reads the recoded column. Taiwan therefore appears as a first-class
+node in the semiconductor layer, which the analysis would otherwise be unable to
 discuss.
 
 ---
@@ -64,9 +64,9 @@ discuss.
 Two entries in that table carry a caveat that the file itself also states. The BIS rules file
 records one row per final rule, and the per-rule entity counts are a manual coding pass rather than
 a parsed field, so the count supporting forecast A2 is our reading of the rules rather than a
-published figure. Moreover, the NVIDIA file is likewise a manual-read index, because the China
+published figure. The NVIDIA file is likewise a manual-read index, because the China
 revenue share lives in the geographic-segment note rather than in a tagged XBRL concept. Both are
-conceded here rather than in a footnote, and automating either would be a logical extension of this
+conceded here rather than in a footnote, and automating either would extend this
 work.
 
 ---
@@ -83,15 +83,15 @@ base rate that forecast A2 prices against and then departs from. Publications by
 informed a settlement-rails forecast that was cut at slate v5.0, and the reasoning behind that cut
 is recorded in `notes/LOCKED-SLATE-v5.md`.
 
-However, each of these is a published document under its own terms. We cite them, transcribe
+Each of these is a published document under its own terms. We cite them, transcribe
 specific figures with an as-of label attached, and redistribute none of them.
 
 ---
 
 ## 5. What We Do Not Redistribute
 
-Our objective in this section is to be explicit about the boundary, since a reader who assumes a
-missing file is an oversight will waste effort looking for it.
+The boundary is stated explicitly, since a reader who assumes a missing file is an oversight will
+waste effort looking for it.
 
 **Raw CEPII BACI.** Neither the HS6 archive, nor `baci_2024_hs6.parquet` at roughly 109 MB, nor
 `baci_country_codes.csv` appears here. The CEPII licence governs the raw distribution and requires
@@ -104,14 +104,14 @@ restricted side of the same boundary, and it also exceeds the size discipline th
 holds itself to. It is the single hard precondition for most of the pipeline, and section 3 of
 `AGENTS.md` states which capabilities it gates.
 
-**Raw pull artifacts.** Additionally, the `data/raw/` directory in the private repository holds
+**Raw pull artifacts.** The `data/raw/` directory in the private repository holds
 roughly 5.4 MB of provider responses, including a Census workbook, an EIA monthly series, and
 several EDGAR JSON payloads. They are omitted because each is reproducible from a public endpoint
 and none is needed to rerun the analysis.
 
 **Derived files whose producers are absent.** `mc_finals.csv`, holding draft Monte Carlo posteriors
 for the forecast slate, is omitted because its producing script is not shipped and because the
-locked slate in `notes/LOCKED-SLATE-v5.md` supersedes it as the authoritative record. Conversely,
+locked slate in `notes/LOCKED-SLATE-v5.md` supersedes it as the authoritative record.
 `x3_inputs.csv` **is** shipped despite its producer being absent, because it is the provenance
 trail for a figure that ships in `figures/`.
 
@@ -145,7 +145,7 @@ trail for a figure that ships in `figures/`.
 
 *Source: Author (2026).*
 
-Of note, where the producing script is marked not shipped, the file's own provenance header carries
+Where the producing script is marked not shipped, the file's own provenance header carries
 the endpoint, the query parameters, and the pull date, so a party with the relevant API access can
 reconstruct it. Full column-level contracts for the files an agent is most likely to parse appear in
 section 6 of `AGENTS.md`.
