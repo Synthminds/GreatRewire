@@ -164,8 +164,9 @@ them adds nothing a reader needs.
 **The LaTeX sources.** This is the machinery, not the paper.
 
 **Internal working notes.** Fourteen notes covering evidence tables, audit logs, adversarial review,
-and superseded slate versions live in the private repository. The two that a reader needs to judge
-the work, being the locked slate and the placebo finding, ship in [`notes/`](notes).
+and superseded slate versions live in the private repository. The three that a reader needs to judge
+the work ship in [`notes/`](notes): the locked slate, the placebo finding, and the dated rationale for
+the one printed probability that differs most from its model draft.
 
 ---
 

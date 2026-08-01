@@ -178,7 +178,9 @@ number is the score recomputed against actual resolutions once they land.
 
 **Provenance.** All ten probabilities were set by the author in a verification pass held separate
 from model construction, and at least one was set against the model's own posterior on stated
-judgment. Guardrail G3 in `AGENTS.md` governs any change to a printed probability.
+judgment. Guardrail G3 in `AGENTS.md` governs any change to a printed probability, and the
+largest such overlay, B5 at 20 against a model draft of 12, carries its dated rationale in
+`notes/B5-OVERLAY-2026-08-01.md`.
 
 **Source.** `notes/LOCKED-SLATE-v5.md`.
 
