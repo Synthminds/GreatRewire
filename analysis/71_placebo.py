@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """This script establishes whether the no-rewiring ensemble constitutes
-a calibrated null. To achieve this objective we push every untreated dyad through the same
+a calibrated null. To achieve this objective we push every comparable dyad through the same
 300-run ensemble and test the resulting percentiles for uniformity.
 
 The claim under test is that "actual corridor X sits at the 12th percentile of a
 300-run no-rewiring ensemble" constitutes evidence of rewiring. That claim is only
-sound if the ensemble is a CALIBRATED null, meaning ordinary untreated dyads land
+sound if the ensemble is a CALIBRATED null, meaning ordinary dyads land
 uniformly inside it. We therefore run two tests:
 
 TEST A (uniformity placebo, the printed 2020->2024 ensemble):
   For every dyad present in both the actual panel and the ensemble, we compute
   the percentile of the actual weight within the 300 counterfactual draws. Under a
-  calibrated null those percentiles are approximately U[0,1] across untreated dyads.
+  calibrated null those percentiles are approximately U[0,1] across comparable dyads.
   We report the KS distance to U[0,1], the share landing in the extreme tails, and
   where the NAMED corridors sit relative to that reference distribution.
 
@@ -20,7 +20,7 @@ TEST B (pre-period dose-response, 2017->2019):
   GDP. That window contains the FIRST trade war but neither COVID nor the 2022+
   controls regime. If the method is a thermometer rather than a hallucination,
   CHN-USA should read cool but not cold here relative to its 2023-24 reading, and
-  the untreated bulk should stay uniform.
+  the bulk should stay uniform.
 
 Of note, this test is designed to be able to fail, and it does. Where it fails,
 72_empirical_null.py rebuilds the null from the cross-section rather than quietly

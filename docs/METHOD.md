@@ -12,7 +12,9 @@ it forward as a null for a world that never rewired. To
 achieve this objective we port that machine to Python in `models/wtw_model.py`, reproducing
 Equations 2 through 8 exactly as published. The source is Kennedy, Wish, Smith, Sherrell, Shields
 and Gera, "Building a Reliable, Dynamic and Temporal Synthetic Model of the World Trade Web"
-(CompleNet 2022), and reproducing it verbatim is what lets the null carry no discretion of ours.
+(CompleNet 2022), on which the author of this package is a co-author. Reproducing the published
+equations verbatim, and validating the port against the published tables before any counterfactual
+is run, is what lets the null carry no discretion of ours.
 
 The model represents the world trade web as an undirected weighted graph on national economies, and
 it is driven by one exogenous input: a GDP vector per year. Equation 2 converts GDP to a fitness,
@@ -53,7 +55,7 @@ are edge count, density, mean degree, mean shortest-path length, mean clustering
 the maximum k-core, alongside their dispersions. The pass contract requires agreement within
 approximately 5% on the first five and k-core within plus or minus 10.
 
-The port passes, reproducing six headline statistics within approximately 3.5%. The null's
+The port passes, reproducing six headline statistics within approximately 2.9%. The null's
 disagreement with the real network can therefore be attributed to the world rather than to the
 implementation. The script also offers a `--mode real` path that drives the port with actual World
 Bank GDPs. That path is a diagnostic which isolates whether a deviation comes from the model or from
@@ -108,7 +110,7 @@ settles. `analysis/71_placebo.py` implements the test, and the test is designed 
 to fail.
 
 The logic is a uniformity placebo. If the claim "corridor X sits at the 12th percentile of a 300-run
-no-rewiring ensemble" is evidence of rewiring, then ordinary untreated country pairs must land uniformly
+no-rewiring ensemble" is evidence of rewiring, then ordinary country pairs must land uniformly
 inside that ensemble. We therefore compute, for every country pair present in both the actual panel and the
 ensemble, the percentile of the actual weight within the 300 counterfactual draws, and we test the
 resulting distribution against U[0,1].

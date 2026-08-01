@@ -5,12 +5,14 @@ without its conditions is a different claim from the one made here.
 
 ---
 
-## F1. The Ported Generator Reproduces Its Published Statistics Within Approximately 3.5%
+## F1. The Ported Generator Reproduces Its Published Statistics Within Approximately 2.9%
 
 **Result.** Run across 1996 to 2020 under the published log-normal GDP conditions, the Python port
 of the CompleNet 2022 world-trade-web generator reproduces six headline graph statistics within
-approximately 3.5% of the published yearly averages. Those statistics are edge count, density, mean degree, mean
-shortest-path length, mean clustering coefficient, and maximum k-core.
+approximately 2.9% of the published yearly averages. Those statistics are edge count, density, mean degree, mean
+shortest-path length, mean clustering coefficient, and maximum k-core. The script also prints three
+dispersion statistics that are not part of the pass contract and are noisier; clustering dispersion
+is the worst at roughly minus 10%, inside the published dispersion.
 
 **Conditions.** The result holds only under the conditions it was measured in. Thirty independent
 iterations averaged from seed base 42, the paper's own bootstrapped log-normal GDP conditions, and

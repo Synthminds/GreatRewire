@@ -39,7 +39,7 @@ each. Four carry the argument.
 
 **The port is faithful.** Run across 1996 to 2020 under the published log-normal GDP conditions, the
 ported generator reproduces six headline statistics from the published tables within approximately
-3.5%. Those are the conditions the published Table 2 was itself generated under, which is why
+2.9%. Those are the conditions the published Table 2 was itself generated under, which is why
 validating against it requires them. That gives us a null we can run forward without having smuggled
 our own discretion into it.
 
@@ -49,7 +49,7 @@ surviving connected component, against approximately 83.7% under random failure 
 magnitude. The topology holds and the value structure partitions. That is a roughly tenfold gap
 between an adversary who chooses and an accident that does not.
 
-**The counterfactual bands failed their own placebo.** Pushing roughly 2,653 untreated country pairs
+**The counterfactual bands failed their own placebo.** Pushing roughly 2,653 comparable country pairs
 through the 300-run ensemble should return approximately uniform percentiles. It returns
 approximately 28.3% below the 5th percentile and approximately 27.5% above the 95th, at a
 Kolmogorov-Smirnov distance to uniform of approximately 0.239. The generator's within-pair
@@ -95,7 +95,9 @@ generation take years to build (C). Labor moves last (D).
 *Source: Author (2026).*
 
 Three sit at or above 55 and seven below even, with a mean of 46.2 across a range of 20 to 75. The
-modal-outcome Brier score of 0.150 runs 40.0% better than a coin flip.
+modal-outcome Brier score is 0.150, which assumes every forecast resolves in the direction it leans
+and is therefore a statement of confidence rather than skill. Scored against our own probabilities,
+the expected Brier score is approximately 0.23.
 
 ---
 

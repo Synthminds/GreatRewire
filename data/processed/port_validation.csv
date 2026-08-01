@@ -1,7 +1,7 @@
 # source: models/wtw_model.py port, bootstrapped log-normal GDPs per paper 4.2, 30 iterations, seed base 42
 # mode: bootstrap
 # script: models/validate_completnet.py
-# reference: paper Tables 1-2 anchors in notes/completnet-spec.md
+# reference: Kennedy et al., CompleNet 2022, Tables 1-2, transcribed above
 year,E,density,mu_deg,sd_deg,mu_sp,sd_sp,mu_cc,sd_cc,kcore
 1996,7707.4,0.29550647956445064,95.15308641975308,42.14241775693855,1.4082171293101247,0.480456751394874,0.8704250822338635,0.13481697732776574,83.16666666666667
 1997,7950.466666666666,0.30482580579198937,98.15390946502059,38.72998523592464,1.3901876936020359,0.4788489241529881,0.8378910794944623,0.11206215221552927,84.36666666666666

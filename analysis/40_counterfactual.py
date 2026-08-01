@@ -4,7 +4,7 @@ rewired. To achieve this objective we initialize the ensemble on the ACTUAL 2020
 evolve it forward across 2021-2028 under the validated CompleNet port on actual GDPs. The
 divergence between that ensemble and the actual 2021-2024 networks is the rewiring, quantified.
 
-Design (notes/completnet-spec.md, Forward-use):
+Design (forward use of the ported generator):
 - We initialize from BACI 2020 undirected aggregates, rescaled to model units
   (kappa: the median of -log10(e/min(w_i,w_j)) matched to the paper's
   Gamma(6.5571, 0.57943) median).

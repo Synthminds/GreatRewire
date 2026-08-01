@@ -123,7 +123,7 @@ trail for a figure that ships in `figures/`.
 |---|---|---|---|
 | `actuals_metrics.csv` | long form, `block`/`metric`/`period`/`entity`/`value`/`unit` | `analysis/21_actuals_metrics.py` (not shipped) | per-row `unit` column |
 | `attack_curves.csv` | 3 strategies by 3 metrics by 21 fractions | `analysis/41_attack.py` | dimensionless shares |
-| `counterfactual_corridors.csv` | 9 corridors by 8 years by 2 kinds | `analysis/40_counterfactual.py` | model units, kappa scale |
+| `counterfactual_corridors.csv` | 9 corridors, 3 kinds, 144 rows | `analysis/40_counterfactual.py` | model units, kappa scale |
 | `counterfactual_ensemble.csv` | aggregate metrics by year | `analysis/40_counterfactual.py` | mixed, see `metric` column |
 | `port_validation.csv` | 25 years, 1996 to 2020 | `models/validate_completnet.py` | dimensionless graph statistics |
 | `placebo_results.json` | 2 windows | `analysis/71_placebo.py` | percentiles in [0,1], KS dimensionless |
