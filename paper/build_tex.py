@@ -1,65 +1,38 @@
 #!/usr/bin/env python3
-"""Typeset The Great Rewiring with LaTeX.
+"""Typeset The Great Rewiring with real LaTeX.
 
-Markdown -> pandoc -> hand-fixed LaTeX -> pdflatex. Chosen over an HTML/print
-route for native maths, real float placement for the four wide exhibits,
-microtype, and proper hyphenation.
+Replaces the HTML/Playwright pipeline. Markdown -> pandoc -> hand-fixed LaTeX ->
+pdflatex. Gains over the HTML route: native math, real float placement for the
+four wide exhibits, microtype, and proper hyphenation.
 
-Text and matched maths are txfonts (Times). An earlier revision used mathptmx;
-it was replaced because its maths face did not match the text face.
-
-The manuscript source is not distributed with this repository, so this script
-documents how the published PDF was produced rather than offering a pipeline a
-third party can run unchanged. Point GRW_SOURCE at a manuscript to build one.
-
-Requires: pandoc, pdflatex/latexmk with txfonts and microtype, and the fonts
-TeX Live ships by default. Install the Python side with requirements-paper.txt.
-
-Usage:
-    python paper/build_tex.py [POINT_SIZE]        # default 10
-    GRW_SOURCE=/path/to/manuscript.md python paper/build_tex.py
-
-Dials, in the order to reach for them when the page count is wrong: LEAD, then
-MARG, then VMAR, then P3. The defaults below are the values that produced the
-published ten-page PDF; changing any of them changes the pagination.
+Font is mathptmx (Nimbus Roman / Times), which is the face the reference draft used.
 """
 
-import os
-import pathlib
-import re
-import shutil
-import subprocess
-import sys
+import re, subprocess, sys, pathlib, shutil
 
-HERE = pathlib.Path(__file__).resolve().parent
-REPO = HERE.parent
+import os
 
 # GRW_WORKDIR lets independent reviewers build from their own copy of the
 # source without colliding on one build directory.
-SP = pathlib.Path(os.environ.get("GRW_WORKDIR", HERE))
-FIGDIR = pathlib.Path(os.environ.get("GRW_FIGDIR", REPO / "figures"))
-SOURCE = pathlib.Path(os.environ.get("GRW_SOURCE", SP / "the-great-rewiring-REWRITTEN.md"))
+SP = pathlib.Path(
+    os.environ.get(
+        "GRW_WORKDIR",
+        "/tmp/claude-0/-home-user-GreatRewire/74d20ed6-cffd-59e4-b68f-d065c50aae7b/scratchpad",
+    )
+)
+FIGDIR = pathlib.Path("/home/user/GreatRewire/figures")
 BUILD = SP / "texbuild"
 PT = sys.argv[1] if len(sys.argv) > 1 else "10"
-
-# Defaults reproduce the published PDF. See the module docstring.
-LEAD = os.environ.get("LEAD", "0.97")  # \linespread
-MARG = os.environ.get("MARG", "1.0in")  # left/right margin
-VMAR = os.environ.get("VMAR", "0.95in,0.9in")  # top,bottom margin
-P3 = os.environ.get("P3", "footnotesize")  # type size for Part 3
-
-if not SOURCE.exists():
-    sys.exit(
-        f"manuscript not found: {SOURCE}\n"
-        "The manuscript source is not distributed with this repository. Set "
-        "GRW_SOURCE to a markdown manuscript to build one."
-    )
+LEAD = os.environ.get("LEAD", "1.00")
+MARG = os.environ.get("MARG", "0.95in")
+P3 = os.environ.get("P3", "footnotesize")
+VMAR = os.environ.get("VMAR", "0.9in,0.85in")
 
 BUILD.mkdir(exist_ok=True)
 for f in FIGDIR.glob("*.pdf"):
     shutil.copy(f, BUILD / f.name)
 
-src = SOURCE.read_text()
+src = (SP / "the-great-rewiring-REWRITTEN.md").read_text()
 
 # ---------------- front matter -----------------------------------------------
 body_md = src.split("---", 1)[1]
@@ -152,18 +125,11 @@ def to_float(mt):
     # the rendered figure carries its own source line, as in the reference draft
     inner = re.sub(r"\\emph\{Source:.*?\}\s*$", "", inner, flags=re.S).strip()
     cap = inner.replace(r"\textbf{Exhibit " + key + ".}", "").strip()
-    # X1, X3 and X4 float on [!ht]: a fixed float leaves a hole when it does not
-    # fit, so LaTeX is left free to slide them to the top of this page or the next.
-    #
-    # X2 is the exception and is pinned. It is meant to fill the foot of its page
-    # with the following section starting clean overhead, which floating cannot
-    # express. Measured alternatives on the published text: [!ht] slid it onto the
-    # next page and pushed Part 2 to 3.50 pages; [H] without the \clearpage left a
-    # hole at the foot and gave the same 3.50. [H] plus \clearpage holds Part 2 at
-    # 2.97. The width is capped at 0.78 for the same reason: at 0.80 the block no
-    # longer fits below the preceding section and the whole figure jumps a page.
-    placement = "[H]" if key == "X2" else "[!ht]"
-    tail = "\\clearpage\n" if key == "X2" else ""
+    # [!ht] rather than [H]: a fixed float leaves a hole when it does not fit,
+    # which is the failure the HTML pipeline had. Let LaTeX slide it to the top
+    # of this page or the next.
+    placement = "[!tb]"
+    tail = ""
     return (
         f"\\begin{{figure}}{placement}\n\\centering\n"
         f"\\includegraphics[width={WIDTH[key]}\\textwidth]{{{FIG[key]}.pdf}}\n"
@@ -272,7 +238,9 @@ body = body.replace("\\subsection{", "\\subsection*{").replace(
 )
 
 # A float must not drift out of the Part that cites it.
-body = re.sub(r"(?=\\section\*\{Part [23])", "\\\\FloatBarrier\n", body)
+# Each Part opens on a fresh page, so the section boundaries a reviewer counts
+# against the per-section page limits are visible rather than mid-page.
+body = re.sub(r"(?=\\section\*\{Part [123])", "\\\\FloatBarrier\\\\clearpage\n", body)
 body = re.sub(r"(?=\\subsection\*\{F\. References)", "\\\\FloatBarrier\n", body)
 
 # Part 3 is the technical appendix and is set a size down, which is worth most
