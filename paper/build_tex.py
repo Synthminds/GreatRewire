@@ -1,38 +1,65 @@
 #!/usr/bin/env python3
-"""Typeset The Great Rewiring with real LaTeX.
+"""Typeset The Great Rewiring with LaTeX.
 
-Replaces the HTML/Playwright pipeline. Markdown -> pandoc -> hand-fixed LaTeX ->
-pdflatex. Gains over the HTML route: native math, real float placement for the
-four wide exhibits, microtype, and proper hyphenation.
+Markdown -> pandoc -> hand-fixed LaTeX -> pdflatex. Chosen over an HTML/print
+route for native maths, real float placement for the four wide exhibits,
+microtype, and proper hyphenation.
 
-Font is mathptmx (Nimbus Roman / Times), which is the face the reference draft used.
+Text and matched maths are txfonts (Times). An earlier revision used mathptmx;
+it was replaced because its maths face did not match the text face.
+
+The manuscript source is not distributed with this repository, so this script
+documents how the published PDF was produced rather than offering a pipeline a
+third party can run unchanged. Point GRW_SOURCE at a manuscript to build one.
+
+Requires: pandoc, pdflatex/latexmk with txfonts and microtype, and the fonts
+TeX Live ships by default. Install the Python side with requirements-paper.txt.
+
+Usage:
+    python paper/build_tex.py [POINT_SIZE]        # default 10
+    GRW_SOURCE=/path/to/manuscript.md python paper/build_tex.py
+
+Dials, in the order to reach for them when the page count is wrong: LEAD, then
+MARG, then VMAR, then P3. The defaults below are the values that produced the
+published ten-page PDF; changing any of them changes the pagination.
 """
 
-import re, subprocess, sys, pathlib, shutil
-
 import os
+import pathlib
+import re
+import shutil
+import subprocess
+import sys
+
+HERE = pathlib.Path(__file__).resolve().parent
+REPO = HERE.parent
 
 # GRW_WORKDIR lets independent reviewers build from their own copy of the
 # source without colliding on one build directory.
-SP = pathlib.Path(
-    os.environ.get(
-        "GRW_WORKDIR",
-        "/tmp/claude-0/-home-user-GreatRewire/74d20ed6-cffd-59e4-b68f-d065c50aae7b/scratchpad",
-    )
-)
-FIGDIR = pathlib.Path("/home/user/GreatRewire/figures")
+SP = pathlib.Path(os.environ.get("GRW_WORKDIR", HERE))
+FIGDIR = pathlib.Path(os.environ.get("GRW_FIGDIR", REPO / "figures"))
+SOURCE = pathlib.Path(os.environ.get("GRW_SOURCE", SP / "the-great-rewiring-REWRITTEN.md"))
 BUILD = SP / "texbuild"
 PT = sys.argv[1] if len(sys.argv) > 1 else "10"
-LEAD = os.environ.get("LEAD", "1.00")
-MARG = os.environ.get("MARG", "0.95in")
-P3 = os.environ.get("P3", "footnotesize")
-VMAR = os.environ.get("VMAR", "0.9in,0.85in")
+
+# Defaults reproduce the published PDF. See the module docstring.
+LEAD = os.environ.get("LEAD", "0.97")  # \linespread
+MARG = os.environ.get("MARG", "1.0in")  # left/right margin
+VMAR = os.environ.get("VMAR", "0.95in,0.9in")  # top,bottom margin
+P3 = os.environ.get("P3", "footnotesize")  # type size for Part 3
+
+if not SOURCE.exists():
+    sys.exit(
+        f"manuscript not found: {SOURCE}\n"
+        "The manuscript source is not distributed with this repository. Set "
+        "GRW_SOURCE to a markdown manuscript to build one."
+    )
 
 BUILD.mkdir(exist_ok=True)
 for f in FIGDIR.glob("*.pdf"):
     shutil.copy(f, BUILD / f.name)
 
-src = (SP / "the-great-rewiring-REWRITTEN.md").read_text()
+src = SOURCE.read_text()
 
 # ---------------- front matter -----------------------------------------------
 body_md = src.split("---", 1)[1]
@@ -125,9 +152,13 @@ def to_float(mt):
     # the rendered figure carries its own source line, as in the reference draft
     inner = re.sub(r"\\emph\{Source:.*?\}\s*$", "", inner, flags=re.S).strip()
     cap = inner.replace(r"\textbf{Exhibit " + key + ".}", "").strip()
-    # [!ht] rather than [H]: a fixed float leaves a hole when it does not fit,
-    # which is the failure the HTML pipeline had. Let LaTeX slide it to the top
-    # of this page or the next.
+    # All four exhibits float on [!tb], top or bottom of a page. An earlier
+    # revision pinned X2 with [H] plus a \clearpage so it would fill the foot of
+    # its page; that was right while Part 2 opened mid-page, but once every Part
+    # opens at a page top the forced break costs a whole page and pushes Part 2
+    # over its three-page limit. [!ht] on the others left roughly 190pt empty at
+    # one page foot for the same reason. Letting LaTeX place all four recovers
+    # the page and holds Part 2 at exactly 3.00.
     placement = "[!tb]"
     tail = ""
     return (
@@ -253,7 +284,9 @@ assert _k == 1, "Part 3 heading not found; the \\small group would be unbalanced
 body = body.rstrip() + "\n\\par}\n"
 
 # references
-refs = (SP / "references.txt").read_text().strip().split("\n")
+# references.txt sits beside the manuscript, not in the build directory, so a
+# reviewer pointing GRW_SOURCE elsewhere picks up that copy rather than this one.
+refs = (SOURCE.parent / "references.txt").read_text().strip().split("\n")
 ref_items = "\n".join(
     "\\item %s" % r.split("] ", 1)[1].replace("&", "\\&").replace("_", "\\_") for r in refs
 )
