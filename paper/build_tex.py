@@ -197,6 +197,10 @@ _n = [0]
 
 def swap_eq(mt):
     out = EQS[_n[0]] if _n[0] < len(EQS) else mt.group(0)
+    # The two generator equations belong together. Break the page before the first
+    # so they sit on one page instead of straddling the fold.
+    if _n[0] == 0:
+        out = "\\clearpage\n" + out
     _n[0] += 1
     return out
 
