@@ -1,0 +1,7 @@
+# Paper build only. Deliberately separate from requirements.txt so the analysis
+# runtime and the verify workflow stay unchanged by the typesetting toolchain.
+#
+# Also needed, outside pip: pandoc, and a TeX installation carrying txfonts and
+# microtype (TeX Live 2023 or later). See paper/README.md.
+
+pymupdf>=1.24,<2.0

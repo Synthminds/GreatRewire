@@ -185,3 +185,28 @@ increment since then. Lead with the gravity figure and present the ensemble as t
 Both readings are true, they measure against different baselines, and quoting them as one figure
 is the specific error
 `notes/PLACEBO-FINDING-2026-07-31.md` was raised to catch.
+
+---
+
+## G. Exhibit Rendering
+
+The figures in [`figures/`](../figures) are the rendered artifacts, not the styling code, which is
+absent by the decision recorded in the README. One post-processing step is worth naming because it
+changes what a reader sees rather than only how it looks.
+
+`analysis/20_multigraph.py` renders Exhibit X2, the strategic-layer multigraph, with bare ISO3 codes
+on the ring and in the chokepoint legend. [`paper/annotate_flags.py`](../paper/annotate_flags.py)
+then places a country flag beside each of them, so the map can be read without decoding thirty-one
+three-letter codes. The flags are Twemoji, licensed CC BY 4.0, and the script appends that
+attribution to the figure's own source line so the credit travels with the figure wherever it is
+reused rather than living only in a repository file.
+
+The committed `figures/x1_multigraph.pdf` is the annotated rendering, which is what the paper prints.
+Re-running the script against an unflagged render reproduces all thirty-seven placements to within
+1.30 pt worst case and 0.47 pt mean, against a 6.4 pt flag: visually indistinguishable, not
+identical. [`paper/README.md`](../paper/README.md) records why.
+
+At print size the ring labels are small enough to be decorative rather than legible, which is a
+property of the source figure and not of the scaling: its native canvas is 763 pt wide with 5.5 pt
+labels, so even at full column width they render near 3.4 pt. The caption carries the numbers for
+that reason.

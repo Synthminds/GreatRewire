@@ -1,0 +1,9 @@
+The PNG files in this directory are Twemoji country-flag icons.
+
+Copyright 2020 Twitter, Inc and other contributors.
+Graphics licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+Source: https://github.com/jdecked/twemoji
+
+They are redistributed here so that Exhibit X2 can be regenerated without a
+network fetch. The attribution required by CC BY is carried on the figure itself,
+appended to its source line by paper/annotate_flags.py.

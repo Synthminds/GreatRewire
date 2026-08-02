@@ -141,6 +141,27 @@ seen `71_placebo.py` fail first invites exactly the misreading that guardrail G2
 
 ---
 
+## The Paper
+
+The published PDF is [`paper/the-great-rewiring-shields-2026.pdf`](paper/the-great-rewiring-shields-2026.pdf),
+and [`paper/`](paper/README.md) holds the machinery that produced it: the pandoc-to-pdflatex build,
+the section-limit measurement used to hold the submission's per-section page budget, and the script
+that annotates Exhibit X2 with country flags.
+
+```bash
+pip install -r requirements-paper.txt            # pymupdf; also needs pandoc and TeX Live
+
+python3 paper/annotate_flags.py --help           # flags on the X2 multigraph
+python3 paper/secmeas.py paper/the-great-rewiring-shields-2026.pdf
+```
+
+The manuscript source is not in this repository, so `paper/build_tex.py` will not run without a
+`GRW_SOURCE`. `annotate_flags.py` and `secmeas.py` both work off artifacts that are here.
+[`paper/README.md`](paper/README.md) covers the fit dials, why Exhibit X2 is pinned rather than
+floated, and the exact extent to which the flag placement reproduces.
+
+---
+
 ## What Is Deliberately Absent
 
 This repository ships what a reader or an agent needs to understand and rerun the work, and nothing
@@ -163,7 +184,10 @@ carrying a provenance header naming the source, the pull date, and the units.
 draft forecast posteriors. The rendered figures ship in [`figures/`](figures); the code that styles
 them adds nothing a reader needs.
 
-**The LaTeX sources.** This is the machinery, not the paper.
+**The manuscript source.** The typesetting machinery ships in [`paper/`](paper) along with the
+published PDF, but the markdown the paper is written in does not. `paper/build_tex.py` therefore
+documents how the artifact was produced rather than offering a pipeline a third party can run
+unchanged; point `GRW_SOURCE` at a manuscript of your own to drive it.
 
 **Internal working notes.** Fourteen notes covering evidence tables, audit logs, adversarial review,
 and superseded slate versions live in the private repository. The three that a reader needs to judge
@@ -180,6 +204,7 @@ the one printed probability that differs most from its model draft.
 | [`docs/METHOD.md`](docs/METHOD.md) | The generator, the null, the calibration failure, and its correction |
 | [`docs/DATA.md`](docs/DATA.md) | Every source, its vintage, its licence, and what is not redistributed |
 | [`docs/FINDINGS.md`](docs/FINDINGS.md) | The numbered results with the conditions under which each holds |
+| [`paper/README.md`](paper/README.md) | How the published PDF is built, the fit dials, and the flag annotation |
 
 *Source: Author (2026).*
 
