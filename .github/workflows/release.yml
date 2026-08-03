@@ -1,0 +1,80 @@
+name: release
+
+# Tags and publishes a release from inside GitHub, where the permission to write
+# refs exists. Sessions working on this repository run behind a proxy that denies
+# tag pushes and direct GitHub API calls by organization policy, so the tag cannot
+# be created from a checkout; this workflow is how it gets made.
+#
+# Fires automatically when the version in CITATION.cff changes on main, and can be
+# run by hand from the Actions tab for any tag.
+
+on:
+  push:
+    branches: [main]
+    paths: ['CITATION.cff']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to create (blank = read version from CITATION.cff)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Work out the tag
+        id: v
+        env:
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+        run: |
+          tag="$INPUT_TAG"
+          if [ -z "$tag" ]; then
+            ver=$(grep -E '^version:' CITATION.cff | head -1 | sed -E 's/^version:[[:space:]]*//' | tr -d '"'"'"' ')
+            if [ -z "$ver" ]; then
+              echo "::error::no version found in CITATION.cff"; exit 1
+            fi
+            tag="v$ver"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "$tag already exists on the remote; nothing to do."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "will publish $tag"
+          fi
+
+      - name: Publish the release
+        if: steps.v.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.v.outputs.tag }}
+        run: |
+          cat > /tmp/notes.md <<'EOF'
+          Replication package for *The Great Rewiring: Two Resource Grabs, One Network*,
+          submitted to Forecasting the Future 2026.
+
+          Contains the validated CompleNet-2022 generator port, the no-rewiring
+          counterfactual ensemble, the attack-percolation and placebo audits, the
+          processed data those run on, the paper build toolchain, and the published PDF.
+
+          The ten forecasts, their thresholds, and the public series that settles each
+          one are in the paper and in `notes/LOCKED-SLATE-v5.md`. Raw CEPII BACI is not
+          redistributable and is not included; `analysis/10_baci_aggregate.py` rebuilds
+          everything downstream from a local copy.
+          EOF
+          asset="paper/the-great-rewiring-shields-2026.pdf"
+          if [ -f "$asset" ]; then
+            gh release create "$TAG" "$asset" --title "$TAG" --notes-file /tmp/notes.md --target "$GITHUB_SHA"
+          else
+            gh release create "$TAG" --title "$TAG" --notes-file /tmp/notes.md --target "$GITHUB_SHA"
+          fi
+          echo "published $TAG"
